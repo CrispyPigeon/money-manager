@@ -1,3 +1,24 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <!-- Margins and Paddings -->
+
+    <dimen name="margin_fragment_top">48dp</dimen>
+    <dimen name="margin_fragment_bottom">37dp</dimen>
+    <dimen name="margin_entry_title">25dp</dimen>
+    <dimen name="margin_entry_vertical">10dp</dimen>
+    <dimen name="margin_button_vertical">19dp</dimen>
+
+    <dimen name="padding_entry_vertical">19dp</dimen>
+
+    <dimen name="margin_general_extra_tiny">2dp</dimen>
+    <dimen name="margin_general_tiny">4dp</dimen>
+    <dimen name="margin_general_small">8dp</dimen>
+    <dimen name="margin_general">16dp</dimen>
+    <dimen name="margin_general_medium">24dp</dimen>
+    <dimen name="margin_general_large">32dp</dimen>
+    <dimen name="margin_general_huge">64dp</dimen>
+
+    <!-- Text sizes -->
+
+    <dimen name="textsize_header_1">24sp</dimen>
+    <dimen name="textsize_standard">18sp</dimen>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/margin_general_small"/>
+    <solid android:color="@color/button_disabled"/>
+    <padding android:top="@dimen/padding_entry_vertical"
+        android:bottom="@dimen/padding_entry_vertical"
+        android:left="@dimen/margin_general_medium"
+        android:right="@dimen/margin_general_medium"/>
+</shape>
