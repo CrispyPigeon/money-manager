@@ -30,17 +30,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_log_in" />
 
-    <EditText
+    <com.ds.money_manager.feature.view.EditTextIconView
         android:id="@+id/edittext_password"
-        style="@style/EditText"
-        android:drawableRight="@drawable/ic_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_general"
         android:layout_marginTop="@dimen/margin_entry_vertical"
-        android:hint="@string/enter_password"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edittext_login" />
@@ -69,7 +64,9 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        android:id="@+id/button_login"
         style="@style/ButtonAccept"
+        android:enabled="false"
         android:layout_width="0dp"
         android:layout_height="63dp"
         android:layout_marginHorizontal="@dimen/margin_general"

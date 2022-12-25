@@ -6,6 +6,7 @@
     <dimen name="margin_entry_title">25dp</dimen>
     <dimen name="margin_entry_vertical">10dp</dimen>
     <dimen name="margin_button_vertical">19dp</dimen>
+    <dimen name="margin_end_edit_text_icon">54dp</dimen>
 
     <dimen name="padding_entry_vertical">19dp</dimen>
 

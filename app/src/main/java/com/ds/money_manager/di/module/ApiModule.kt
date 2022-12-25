@@ -1,6 +1,8 @@
 package com.ds.money_manager.di.module
 
 import com.ds.money_manager.data.repository.api.MoneyManagerApi
+import com.ds.money_manager.data.repository.handler.MoneyManagerDataHandler
+import com.ds.money_manager.data.repository.handler.MoneyManagerDataHandlerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +47,9 @@ internal object ApiModule {
     fun provideApiService(retrofit: Retrofit): MoneyManagerApi =
         retrofit.create(MoneyManagerApi::class.java)
 
-//    @Singleton
-//    @Provides
-//    fun providesRepository(apiService: MoneyManagerApi) = Repository(apiService)
+    @Provides
+    @Singleton
+    fun provideMoneyManagerDataHandler(moneyManagerApi: MoneyManagerApi): MoneyManagerDataHandler {
+        return MoneyManagerDataHandlerImpl(moneyManagerApi)
+    }
 }
