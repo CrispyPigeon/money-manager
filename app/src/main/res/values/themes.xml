@@ -38,6 +38,10 @@
         <item name="android:textColor">@color/field_text_positive</item>
     </style>
 
+    <style name="TextView.DialogDescription">
+        <item name="android:textSize">@dimen/textsize_dialog_description</item>
+    </style>
+
     <!-- EditText styles -->
 
     <style name="EditText">
