@@ -10,6 +10,11 @@
 
     <style name="Theme.Moneymanager" parent="Base.Theme.Moneymanager" />
 
+    <style name="MyAlertDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
     <!-- TextView styles -->
 
     <style name="TextView" parent="Widget.MaterialComponents.TextView">

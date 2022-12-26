@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
+import com.ds.money_manager.R
+import com.ds.money_manager.feature.view.LoadingDialog
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
@@ -21,6 +23,8 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     private val type = (javaClass.genericSuperclass as ParameterizedType)
     private val classVB = type.actualTypeArguments[0] as Class<VB>
     private val classVM = type.actualTypeArguments[1] as Class<VM>
+
+    private var loadingDialog: LoadingDialog? = null
 
     private val inflateMethod = classVB.getMethod(
         "inflate",

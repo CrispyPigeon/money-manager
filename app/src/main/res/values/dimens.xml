@@ -1,4 +1,8 @@
 <resources>
+    <dimen name="dialog_loading_height">145dp</dimen>
+    <dimen name="dialog_loading_width">330dp</dimen>
+
+
     <!-- Margins and Paddings -->
 
     <dimen name="margin_fragment_top">48dp</dimen>

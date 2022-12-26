@@ -9,6 +9,7 @@ import com.ds.money_manager.usecases.SaveSignInDataUseCase
 import com.ds.money_manager.usecases.SignInRequestUseCase
 import com.ds.money_manager.utils.ApiException
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,6 +20,8 @@ class SignInViewModel @Inject constructor(
 
     fun signIn(name: String, password: String) {
         launchUI {
+            state = ViewState.IsDataLoading(true)
+            delay(2000)
             signInRequestUseCase(name, password).awaitFold(
                 {
                     saveSignInDataUseCase(name, password, it.token)
@@ -35,11 +38,13 @@ class SignInViewModel @Inject constructor(
                     }
                 }
             )
+            state = ViewState.IsDataLoading(false)
         }
     }
 
     sealed class ViewState : BaseViewState {
         object Initial : ViewState()
+        class IsDataLoading(val flag: Boolean) : ViewState()
         class SignInFailure(val title: String, val message: String) : ViewState()
         object SignInSuccessful : ViewState()
     }

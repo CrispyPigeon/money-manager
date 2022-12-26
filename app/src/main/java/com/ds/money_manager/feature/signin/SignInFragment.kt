@@ -5,20 +5,30 @@ import android.text.InputType
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragment.BaseFragment
 import com.ds.money_manager.databinding.FragmentSignInBinding
+import com.ds.money_manager.feature.view.LoadingDialog
 import com.ds.money_manager.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
     private var inputTypeClicked = false
+    private lateinit var loadingDialog: LoadingDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
         initListeners()
-        //viewModel.signIn("string", "string")
+    }
+
+    private fun initViews() {
+        loadingDialog = LoadingDialog(
+            getString(R.string.dialog_loading_title),
+            getString(R.string.dialog_loading_sign_in_description)
+        )
     }
 
     private fun initListeners() {
@@ -61,6 +71,12 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
             }
             is SignInViewModel.ViewState.SignInFailure -> {
                 Toast.makeText(requireContext(), "NO", Toast.LENGTH_LONG).show()
+            }
+            is SignInViewModel.ViewState.IsDataLoading -> {
+                if (state.flag)
+                    loadingDialog.show(requireActivity().supportFragmentManager,"LOADING_DIALOG_TAG")
+                else
+                    loadingDialog.dismiss()
             }
             else -> {}
         }

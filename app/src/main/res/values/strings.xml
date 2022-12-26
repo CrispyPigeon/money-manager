@@ -8,4 +8,6 @@
     <string name="login">Login</string>
     <string name="have_no_account">Don’t have an account?</string>
     <string name="sign_up_underlined"><u>Sign Up</u></string>
+    <string name="dialog_loading_title">Loading</string>
+    <string name="dialog_loading_sign_in_description">Authorization process</string>
 </resources>
