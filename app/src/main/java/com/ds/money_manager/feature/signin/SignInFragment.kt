@@ -1,39 +1,28 @@
 package com.ds.money_manager.feature.signin
 
-import android.os.Bundle
 import android.text.InputType
-import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.ds.money_manager.R
-import com.ds.money_manager.base.presentation.fragment.BaseFragment
+import com.ds.money_manager.base.presentation.fragment.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentSignInBinding
-import com.ds.money_manager.feature.view.LoadingDialog
 import com.ds.money_manager.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
+class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewModel>() {
     private var inputTypeClicked = false
-    private lateinit var loadingDialog: LoadingDialog
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initViews() {
+        super.initViews()
 
-        initViews()
-        initListeners()
-    }
-
-    private fun initViews() {
-        loadingDialog = LoadingDialog(
+        loadingDialog.setText(
             getString(R.string.dialog_loading_title),
             getString(R.string.dialog_loading_sign_in_description)
         )
     }
 
-    private fun initListeners() {
-        observe(viewModel.stateLiveData, ::onStateChanged)
-
+    override fun initListeners() {
         binding.edittextPassword.imageView.setOnClickListener {
             inputTypeClicked = !inputTypeClicked
             if (inputTypeClicked)
@@ -57,28 +46,18 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
                 binding.edittextPassword.editText.text.toString()
             )
         }
+
+        binding.textviewSignUp.setOnClickListener {
+            navController.navigate(R.id.action_signInFragment_to_signUpFragment)
+        }
+
+        viewModel.signInSuccessEvent.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(), "YES", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun configureLoginButton() {
         binding.buttonLogin.isEnabled =
             (binding.edittextLogin.text.length > 2 && binding.edittextPassword.editText.text.length > 2)
-    }
-
-    private fun onStateChanged(state: SignInViewModel.ViewState) {
-        when (state){
-            is SignInViewModel.ViewState.SignInSuccessful -> {
-                Toast.makeText(requireContext(), "YES", Toast.LENGTH_LONG).show()
-            }
-            is SignInViewModel.ViewState.SignInFailure -> {
-                Toast.makeText(requireContext(), "NO", Toast.LENGTH_LONG).show()
-            }
-            is SignInViewModel.ViewState.IsDataLoading -> {
-                if (state.flag)
-                    loadingDialog.show(requireActivity().supportFragmentManager,"LOADING_DIALOG_TAG")
-                else
-                    loadingDialog.dismiss()
-            }
-            else -> {}
-        }
     }
 }

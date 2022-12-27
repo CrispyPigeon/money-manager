@@ -1,6 +1,5 @@
 package com.ds.money_manager.feature.view
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.view.SizeFixedDialogFragment
 
 
-class LoadingDialog(val title: String, val description: String) : SizeFixedDialogFragment() {
+class LoadingDialog : SizeFixedDialogFragment() {
 
     private lateinit var titleTextView: TextView
     private lateinit var descriptionTextView: TextView
@@ -27,16 +26,15 @@ class LoadingDialog(val title: String, val description: String) : SizeFixedDialo
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-        configureData()
+    }
+
+    fun setText(title: String, description: String) {
+        titleTextView.text = title
+        descriptionTextView.text = description
     }
 
     private fun initViews() {
         titleTextView = requireView().findViewById(R.id.textview_title)
         descriptionTextView = requireView().findViewById(R.id.textview_description)
-    }
-
-    private fun configureData() {
-        titleTextView.text = title
-        descriptionTextView.text = description
     }
 }

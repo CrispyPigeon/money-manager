@@ -1,13 +1,11 @@
 package com.ds.money_manager.feature.signin
 
-import androidx.lifecycle.ViewModel
-import com.ds.money_manager.base.helpers.awaitFold
+import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
-import com.ds.money_manager.base.presentation.BaseViewState
-import com.ds.money_manager.base.presentation.viewmodels.BaseViewModel
-import com.ds.money_manager.usecases.SaveSignInDataUseCase
+import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
+import com.ds.money_manager.usecases.SaveAuthDataUseCase
 import com.ds.money_manager.usecases.SignInRequestUseCase
-import com.ds.money_manager.utils.ApiException
+import com.ds.money_manager.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import javax.inject.Inject
@@ -15,37 +13,31 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     val signInRequestUseCase: SignInRequestUseCase,
-    val saveSignInDataUseCase: SaveSignInDataUseCase
-) : BaseViewModel<SignInViewModel.ViewState>(ViewState.Initial) {
+    val saveAuthDataUseCase: SaveAuthDataUseCase
+) : DialogsViewModel() {
+
+    val signInSuccessEvent = SingleLiveEvent<Any>()
+    val signInErrorEvent = SingleLiveEvent<Any>()
 
     fun signIn(name: String, password: String) {
         launchUI {
-            state = ViewState.IsDataLoading(true)
+            changeLoadingState(true)
             delay(2000)
-            signInRequestUseCase(name, password).awaitFold(
+            signInRequestUseCase(name, password).awaitFoldApi(
                 {
-                    saveSignInDataUseCase(name, password, it.token)
-                    state = ViewState.SignInSuccessful
+                    saveAuthDataUseCase(name, password, it.token)
+                    signInSuccessEvent.call()
                 },
                 {
-                    state = when (it) {
-                        is ApiException -> {
-                            ViewState.SignInFailure(it.title, it.description)
-                        }
-                        else -> {
-                            ViewState.SignInFailure("", it.message!!)
-                        }
-                    }
+                    //showError(it.title, it.description) TODO error dialog
+                    signInErrorEvent.call()
+                },
+                {
+                    //showError("", it.message!!)
+                    signInErrorEvent.call()
                 }
             )
-            state = ViewState.IsDataLoading(false)
+            changeLoadingState(false)
         }
-    }
-
-    sealed class ViewState : BaseViewState {
-        object Initial : ViewState()
-        class IsDataLoading(val flag: Boolean) : ViewState()
-        class SignInFailure(val title: String, val message: String) : ViewState()
-        object SignInSuccessful : ViewState()
     }
 }

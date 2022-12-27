@@ -10,4 +10,8 @@
     <string name="sign_up_underlined"><u>Sign Up</u></string>
     <string name="dialog_loading_title">Loading</string>
     <string name="dialog_loading_sign_in_description">Authorization process</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="have_an_account">Do you have an account?</string>
+    <string name="log_in_underlined"><u>Log In</u></string>
+    <string name="repeat_password">Repeat your password</string>
 </resources>

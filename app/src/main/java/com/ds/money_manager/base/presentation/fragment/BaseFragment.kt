@@ -45,4 +45,15 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initViews()
+        initListeners()
+    }
+
+    open fun initViews(){}
+
+    abstract fun initListeners()
 }

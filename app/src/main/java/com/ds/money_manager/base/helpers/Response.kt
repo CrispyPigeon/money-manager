@@ -1,5 +1,6 @@
 package com.ds.money_manager.base.helpers
 
+import com.ds.money_manager.utils.ApiException
 import com.github.kittinunf.result.Result
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -26,3 +27,16 @@ suspend inline fun <V : Any> Response<V>.awaitFold(
     success: (V) -> Unit,
     failure: (Exception) -> Unit
 ) = this.await().fold(success, failure)
+
+suspend inline fun <V : Any> Response<V>.awaitFoldApi(
+    success: (V) -> Unit,
+    apiFailure: (ApiException) -> Unit,
+    failure: (Exception) -> Unit
+) {
+    this.await().fold(success) { e ->
+        when (e) {
+            is ApiException -> apiFailure(e)
+            else -> failure(e)
+        }
+    }
+}
