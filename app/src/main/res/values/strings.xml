@@ -14,4 +14,6 @@
     <string name="have_an_account">Do you have an account?</string>
     <string name="log_in_underlined"><u>Log In</u></string>
     <string name="repeat_password">Repeat your password</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_error_passwords_description">Passwords are not the same</string>
 </resources>

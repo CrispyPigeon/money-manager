@@ -12,18 +12,28 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignUpFragment : DialogsSupportFragment<FragmentSignUpBinding, SignUpViewModel>() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        initViews()
-        initListeners()
-    }
-
     override fun initViews() {
+        super.initViews()
+
+        loadingDialog.setText(
+            getString(R.string.dialog_loading_title),
+            getString(R.string.dialog_loading_sign_in_description)
+        )
+
         binding.edittextRepeatPassword.editText.hint = getString(R.string.repeat_password)
     }
 
     override fun initListeners() {
+        super.initListeners()
+
+        binding.buttonSignUp.setOnClickListener {
+            viewModel.signUp(
+                binding.edittextLogin.text.toString(),
+                binding.edittextPassword.editText.text.toString(),
+                binding.edittextRepeatPassword.editText.text.toString()
+            )
+        }
+
         binding.textviewLogIn.setOnClickListener {
             navController.navigateUp()
         }

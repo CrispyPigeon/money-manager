@@ -11,6 +11,9 @@ import com.ds.money_manager.base.presentation.view.SizeFixedDialogFragment
 
 class LoadingDialog : SizeFixedDialogFragment() {
 
+    private var title = ""
+    private var description = ""
+
     private lateinit var titleTextView: TextView
     private lateinit var descriptionTextView: TextView
 
@@ -28,13 +31,15 @@ class LoadingDialog : SizeFixedDialogFragment() {
         initViews()
     }
 
-    fun setText(title: String, description: String) {
+    private fun initViews() {
+        titleTextView = requireView().findViewById(R.id.textview_title)
         titleTextView.text = title
+        descriptionTextView = requireView().findViewById(R.id.textview_description)
         descriptionTextView.text = description
     }
 
-    private fun initViews() {
-        titleTextView = requireView().findViewById(R.id.textview_title)
-        descriptionTextView = requireView().findViewById(R.id.textview_description)
+    fun setText(title: String, description: String) {
+        this.title = title
+        this.description = description
     }
 }

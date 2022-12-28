@@ -1,6 +1,8 @@
 package com.ds.money_manager.feature.signup
 
+import com.ds.money_manager.R
 import com.ds.money_manager.base.helpers.awaitFold
+import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.state.BaseViewState
 import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
@@ -17,13 +19,24 @@ class SignUpViewModel @Inject constructor(
     val saveAuthDataUseCase: SaveAuthDataUseCase
 ) : DialogsViewModel() {
 
-    fun validatePasswords(password: String, rPassword: String) = (password == rPassword)
+    fun validatePasswords(password: String, rPassword: String): Boolean {
+        if (password != rPassword)
+            showErrorWithIds(
+                R.string.dialog_error_title,
+                R.string.dialog_error_passwords_description
+            )
 
-    fun signUp(name: String, password: String) {
+        return password == rPassword
+    }
+
+    fun signUp(name: String, password: String, rPassword: String) {
         launchUI {
-            //state = ViewState.IsDataLoading(true)
+            if (!validatePasswords(password, rPassword))
+                return@launchUI
+
+            changeLoadingState(true)
             delay(2000)
-            signUpRequestUseCase(name, password).awaitFold(
+            signUpRequestUseCase(name, password).awaitFoldApi(
                 {
                     saveAuthDataUseCase(name, password, it.token)
                     //state = ViewState.SignUpSuccessful
@@ -37,9 +50,12 @@ class SignUpViewModel @Inject constructor(
                     //        ViewState.SignUpFailure("", it.message!!)
                     //    }
                     //}
+                },
+                {
+
                 }
             )
-            //state = ViewState.IsDataLoading(false)
+            changeLoadingState(true)
         }
     }
 }

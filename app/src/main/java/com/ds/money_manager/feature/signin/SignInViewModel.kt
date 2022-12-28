@@ -29,12 +29,10 @@ class SignInViewModel @Inject constructor(
                     signInSuccessEvent.call()
                 },
                 {
-                    //showError(it.title, it.description) TODO error dialog
-                    signInErrorEvent.call()
+                    showError(it.title, it.description)
                 },
                 {
-                    //showError("", it.message!!)
-                    signInErrorEvent.call()
+                    showError("", it.message!!)
                 }
             )
             changeLoadingState(false)

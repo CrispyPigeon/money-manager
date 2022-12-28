@@ -23,6 +23,8 @@ class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewM
     }
 
     override fun initListeners() {
+        super.initListeners()
+
         binding.edittextPassword.imageView.setOnClickListener {
             inputTypeClicked = !inputTypeClicked
             if (inputTypeClicked)
