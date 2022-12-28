@@ -2,18 +2,21 @@
     <string name="app_name">Money Manager</string>
     <string name="shared_preferences_key">money-manager-pref</string>
 
+    <string name="dialog_loading_title">Loading</string>
+    <string name="dialog_loading_sign_in_description">Authorization process</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_error_description">Something went wrong!</string>
+    <string name="dialog_error_passwords_description">Passwords are not the same</string>
+    <string name="dialog_button_ok">OK</string>
+
     <string name="log_in">Log In</string>
     <string name="enter_username">Enter your username</string>
     <string name="enter_password">Enter your password</string>
     <string name="login">Login</string>
     <string name="have_no_account">Don’t have an account?</string>
     <string name="sign_up_underlined"><u>Sign Up</u></string>
-    <string name="dialog_loading_title">Loading</string>
-    <string name="dialog_loading_sign_in_description">Authorization process</string>
     <string name="sign_up">Sign Up</string>
     <string name="have_an_account">Do you have an account?</string>
     <string name="log_in_underlined"><u>Log In</u></string>
     <string name="repeat_password">Repeat your password</string>
-    <string name="dialog_error_title">Error</string>
-    <string name="dialog_error_passwords_description">Passwords are not the same</string>
 </resources>

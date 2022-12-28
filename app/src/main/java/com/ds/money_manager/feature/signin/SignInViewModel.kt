@@ -17,7 +17,6 @@ class SignInViewModel @Inject constructor(
 ) : DialogsViewModel() {
 
     val signInSuccessEvent = SingleLiveEvent<Any>()
-    val signInErrorEvent = SingleLiveEvent<Any>()
 
     fun signIn(name: String, password: String) {
         launchUI {

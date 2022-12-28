@@ -9,6 +9,7 @@ import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
 import com.ds.money_manager.usecases.SaveAuthDataUseCase
 import com.ds.money_manager.usecases.SignUpRequestUseCase
 import com.ds.money_manager.utils.ApiException
+import com.ds.money_manager.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import javax.inject.Inject
@@ -18,6 +19,8 @@ class SignUpViewModel @Inject constructor(
     val signUpRequestUseCase: SignUpRequestUseCase,
     val saveAuthDataUseCase: SaveAuthDataUseCase
 ) : DialogsViewModel() {
+
+    val authSuccessEvent = SingleLiveEvent<Any>()
 
     fun validatePasswords(password: String, rPassword: String): Boolean {
         if (password != rPassword)
@@ -39,23 +42,16 @@ class SignUpViewModel @Inject constructor(
             signUpRequestUseCase(name, password).awaitFoldApi(
                 {
                     saveAuthDataUseCase(name, password, it.token)
-                    //state = ViewState.SignUpSuccessful
+                    authSuccessEvent.call()
                 },
                 {
-                    //state = when (it) {
-                    //    is ApiException -> {
-                    //        ViewState.SignUpFailure(it.title, it.description)
-                    //    }
-                    //    else -> {
-                    //        ViewState.SignUpFailure("", it.message!!)
-                    //    }
-                    //}
+                    showError(it.title,it.description)
                 },
                 {
-
+                    showError("", it.message.toString())
                 }
             )
-            changeLoadingState(true)
+            changeLoadingState(false)
         }
     }
 }
