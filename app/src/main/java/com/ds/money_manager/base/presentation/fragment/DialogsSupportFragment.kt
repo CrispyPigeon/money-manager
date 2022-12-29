@@ -13,8 +13,6 @@ abstract class DialogsSupportFragment<VB : ViewBinding, VM : DialogsViewModel> :
     lateinit var errorDialog: AlertDialog
 
     override fun initViews() {
-        super.initViews()
-
         loadingDialog = LoadingDialog()
         errorDialog = AlertDialog()
     }

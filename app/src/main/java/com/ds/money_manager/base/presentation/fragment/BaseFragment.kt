@@ -53,7 +53,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
         initListeners()
     }
 
-    open fun initViews(){}
+    abstract fun initViews()
 
     abstract fun initListeners()
 }
