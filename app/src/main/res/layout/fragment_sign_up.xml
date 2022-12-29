@@ -6,7 +6,7 @@
     android:background="@color/background">
 
     <TextView
-        android:id="@+id/textview_sign_up"
+        android:id="@+id/text_view_sign_up"
         style="@style/TextView.Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edittext_login"
+        android:id="@+id/edit_text_login"
         style="@style/EditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -28,30 +28,30 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_sign_up" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_sign_up" />
 
     <com.ds.money_manager.feature.view.EditTextIconView
-    android:id="@+id/edittext_password"
+    android:id="@+id/edit_text_password"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/margin_general"
     android:layout_marginTop="@dimen/margin_entry_vertical"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/edittext_login" />
+    app:layout_constraintTop_toBottomOf="@id/edit_text_login" />
 
     <com.ds.money_manager.feature.view.EditTextIconView
-        android:id="@+id/edittext_repeat_password"
+        android:id="@+id/edit_text_repeat_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_general"
         android:layout_marginTop="@dimen/margin_entry_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_password" />
+        app:layout_constraintTop_toBottomOf="@id/edit_text_password" />
 
     <TextView
-        android:id="@+id/textview_have_no_account"
+        android:id="@+id/text_view_have_no_account"
         style="@style/TextView.Hint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -59,11 +59,11 @@
         android:layout_marginBottom="@dimen/margin_fragment_bottom"
         android:text="@string/have_an_account"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/textview_log_in"
+        app:layout_constraintEnd_toStartOf="@id/text_view_log_in"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textview_log_in"
+        android:id="@+id/text_view_log_in"
         style="@style/TextView.Hint.2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
         android:layout_marginBottom="@dimen/margin_button_vertical"
         android:background="@drawable/selector_button_background"
         android:text="@string/sign_up"
-        app:layout_constraintBottom_toTopOf="@id/textview_log_in"
+        app:layout_constraintBottom_toTopOf="@id/text_view_log_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

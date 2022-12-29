@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/edittext"
+        android:id="@+id/edit_text"
         style="@style/EditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -18,13 +18,13 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/imageview"
+        android:id="@+id/image_view"
         android:src="@drawable/ic_view"
         android:padding="@dimen/margin_general"
         android:layout_marginEnd="@dimen/margin_general_tiny"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edittext"
-        app:layout_constraintBottom_toBottomOf="@id/edittext"
+        app:layout_constraintTop_toTopOf="@id/edit_text"
+        app:layout_constraintBottom_toBottomOf="@id/edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

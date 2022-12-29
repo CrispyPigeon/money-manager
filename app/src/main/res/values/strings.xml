@@ -20,4 +20,5 @@
     <string name="log_in_underlined"><u>Log In</u></string>
     <string name="repeat_password">Repeat your password</string>
     <string name="total_balance">Total Balance</string>
+    <string name="wallets">Wallets</string>
 </resources>

@@ -18,7 +18,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 
     override fun initListeners() {
         binding.appBarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-            binding.textviewTotalBalance.alpha =
+            binding.textViewTotalBalance.alpha =
                 (appBarLayout.totalScrollRange + verticalOffset).toFloat() / appBarLayout.totalScrollRange
         }
     }

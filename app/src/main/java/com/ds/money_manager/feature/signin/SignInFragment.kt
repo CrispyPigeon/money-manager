@@ -25,31 +25,31 @@ class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewM
     override fun initListeners() {
         super.initListeners()
 
-        binding.edittextPassword.imageView.setOnClickListener {
+        binding.editTextPassword.imageView.setOnClickListener {
             inputTypeClicked = !inputTypeClicked
             if (inputTypeClicked)
-                binding.edittextPassword.editText.inputType = InputType.TYPE_CLASS_TEXT
+                binding.editTextPassword.editText.inputType = InputType.TYPE_CLASS_TEXT
             else
-                binding.edittextPassword.editText.inputType =
+                binding.editTextPassword.editText.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
-        binding.edittextLogin.addTextChangedListener {
+        binding.editTextLogin.addTextChangedListener {
             configureLoginButton()
         }
 
-        binding.edittextPassword.editText.addTextChangedListener {
+        binding.editTextPassword.editText.addTextChangedListener {
             configureLoginButton()
         }
 
         binding.buttonLogin.setOnClickListener {
             viewModel.signIn(
-                binding.edittextLogin.text.toString(),
-                binding.edittextPassword.editText.text.toString()
+                binding.editTextLogin.text.toString(),
+                binding.editTextPassword.editText.text.toString()
             )
         }
 
-        binding.textviewSignUp.setOnClickListener {
+        binding.textViewSignUp.setOnClickListener {
             navController.navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
@@ -60,6 +60,6 @@ class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewM
 
     private fun configureLoginButton() {
         binding.buttonLogin.isEnabled =
-            (binding.edittextLogin.text.length > 2 && binding.edittextPassword.editText.text.length > 2)
+            (binding.editTextLogin.text.length > 2 && binding.editTextPassword.editText.text.length > 2)
     }
 }

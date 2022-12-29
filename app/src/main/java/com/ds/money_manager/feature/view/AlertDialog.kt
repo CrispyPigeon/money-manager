@@ -30,11 +30,11 @@ class AlertDialog : StandardDialogFragment() {
 
     private fun initViews() {
         if (title.isNotEmpty()) {
-            titleTextView = requireView().findViewById(R.id.textview_title)
+            titleTextView = requireView().findViewById(R.id.text_view_title)
             titleTextView.text = title
         }
         if (description.isNotEmpty()) {
-            descriptionTextView = requireView().findViewById(R.id.textview_description)
+            descriptionTextView = requireView().findViewById(R.id.text_view_description)
             descriptionTextView.text = description
         }
         textViewButton = requireView().findViewById(R.id.textview_button)

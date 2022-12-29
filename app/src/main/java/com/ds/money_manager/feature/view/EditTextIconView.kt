@@ -14,7 +14,7 @@ class EditTextIconView(context: Context, attr: AttributeSet) : ConstraintLayout(
 
     init {
         inflate(context, R.layout.view_edit_text_icon, this)
-        editText = findViewById(R.id.edittext)
-        imageView = findViewById(R.id.imageview)
+        editText = findViewById(R.id.edit_text)
+        imageView = findViewById(R.id.image_view)
     }
 }

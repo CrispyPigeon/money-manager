@@ -29,9 +29,9 @@ class LoadingDialog : StandardDialogFragment() {
     }
 
     private fun initViews() {
-        titleTextView = requireView().findViewById(R.id.textview_title)
+        titleTextView = requireView().findViewById(R.id.text_view_title)
         titleTextView.text = title
-        descriptionTextView = requireView().findViewById(R.id.textview_description)
+        descriptionTextView = requireView().findViewById(R.id.text_view_description)
         descriptionTextView.text = description
     }
 }

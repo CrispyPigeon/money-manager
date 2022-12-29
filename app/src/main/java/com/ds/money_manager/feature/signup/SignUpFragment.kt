@@ -22,9 +22,9 @@ class SignUpFragment : DialogsSupportFragment<FragmentSignUpBinding, SignUpViewM
             getString(R.string.dialog_loading_title),
             getString(R.string.dialog_loading_sign_in_description)
         )
-        binding.edittextPassword.editText.imeOptions = EditorInfo.IME_ACTION_NEXT
-        binding.edittextPassword.editText.nextFocusDownId = binding.edittextRepeatPassword.id
-        binding.edittextRepeatPassword.editText.hint = getString(R.string.repeat_password)
+        binding.editTextPassword.editText.imeOptions = EditorInfo.IME_ACTION_NEXT
+        binding.editTextPassword.editText.nextFocusDownId = binding.editTextRepeatPassword.id
+        binding.editTextRepeatPassword.editText.hint = getString(R.string.repeat_password)
     }
 
     override fun initListeners() {
@@ -32,43 +32,43 @@ class SignUpFragment : DialogsSupportFragment<FragmentSignUpBinding, SignUpViewM
 
         binding.buttonSignUp.setOnClickListener {
             viewModel.signUp(
-                binding.edittextLogin.text.toString(),
-                binding.edittextPassword.editText.text.toString(),
-                binding.edittextRepeatPassword.editText.text.toString()
+                binding.editTextLogin.text.toString(),
+                binding.editTextPassword.editText.text.toString(),
+                binding.editTextRepeatPassword.editText.text.toString()
             )
         }
 
-        binding.textviewLogIn.setOnClickListener {
+        binding.textViewLogIn.setOnClickListener {
             navController.navigateUp()
         }
 
-        binding.edittextPassword.imageView.setOnClickListener {
+        binding.editTextPassword.imageView.setOnClickListener {
             inputTypeForPasswordClicked = !inputTypeForPasswordClicked
             if (inputTypeForPasswordClicked)
-                binding.edittextPassword.editText.inputType = InputType.TYPE_CLASS_TEXT
+                binding.editTextPassword.editText.inputType = InputType.TYPE_CLASS_TEXT
             else
-                binding.edittextPassword.editText.inputType =
+                binding.editTextPassword.editText.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
-        binding.edittextRepeatPassword.imageView.setOnClickListener {
+        binding.editTextRepeatPassword.imageView.setOnClickListener {
             inputTypeForRepeatPasswordClicked = !inputTypeForRepeatPasswordClicked
             if (inputTypeForRepeatPasswordClicked)
-                binding.edittextRepeatPassword.editText.inputType = InputType.TYPE_CLASS_TEXT
+                binding.editTextRepeatPassword.editText.inputType = InputType.TYPE_CLASS_TEXT
             else
-                binding.edittextRepeatPassword.editText.inputType =
+                binding.editTextRepeatPassword.editText.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
-        binding.edittextLogin.addTextChangedListener {
+        binding.editTextLogin.addTextChangedListener {
             configureLoginButton()
         }
 
-        binding.edittextPassword.editText.addTextChangedListener {
+        binding.editTextPassword.editText.addTextChangedListener {
             configureLoginButton()
         }
 
-        binding.edittextRepeatPassword.editText.addTextChangedListener {
+        binding.editTextRepeatPassword.editText.addTextChangedListener {
             configureLoginButton()
         }
 
@@ -79,8 +79,8 @@ class SignUpFragment : DialogsSupportFragment<FragmentSignUpBinding, SignUpViewM
 
     private fun configureLoginButton() {
         binding.buttonSignUp.isEnabled =
-            (binding.edittextLogin.text.length > 2 &&
-                    binding.edittextPassword.editText.text.length > 2 &&
-                    binding.edittextRepeatPassword.editText.text.length > 2)
+            (binding.editTextLogin.text.length > 2 &&
+                    binding.editTextPassword.editText.text.length > 2 &&
+                    binding.editTextRepeatPassword.editText.text.length > 2)
     }
 }
