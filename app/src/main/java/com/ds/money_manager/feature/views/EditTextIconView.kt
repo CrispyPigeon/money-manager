@@ -1,4 +1,4 @@
-package com.ds.money_manager.feature.view
+package com.ds.money_manager.feature.views
 
 import android.content.Context
 import android.util.AttributeSet

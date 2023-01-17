@@ -1,4 +1,4 @@
-package com.ds.money_manager.feature.view
+package com.ds.money_manager.feature.views.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater

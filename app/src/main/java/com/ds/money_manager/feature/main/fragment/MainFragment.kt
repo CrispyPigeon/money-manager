@@ -3,13 +3,44 @@ package com.ds.money_manager.feature.main.fragment
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragment.BaseFragment
 import com.ds.money_manager.databinding.FragmentMainBinding
+import com.ds.money_manager.feature.main.fragment.adapters.WalletsViewPagerAdapter
 
 class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
+    private var walletsAdapter: WalletsViewPagerAdapter? = null
+
     override fun initViews() {
         configureAppBar()
+        configureWalletsRv()
+    }
+
+    private fun configureWalletsRv() {
+        walletsAdapter = WalletsViewPagerAdapter()
+        binding.viewPagerWallets.clipToPadding = false
+        binding.viewPagerWallets.clipChildren = false
+        binding.viewPagerWallets.offscreenPageLimit = 3
+        val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.margin_general)
+        val offsetPx = resources.getDimensionPixelOffset(R.dimen.margin_general_medium)
+        binding.viewPagerWallets.setPageTransformer { page, position ->
+            val viewPager = page.parent.parent as ViewPager2
+            val offset = position * -(2 * offsetPx + pageMarginPx)
+            if (viewPager.orientation == ORIENTATION_HORIZONTAL) {
+                if (ViewCompat.getLayoutDirection(viewPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+                    page.translationX = -offset
+                } else {
+                    page.translationX = offset
+                }
+            } else {
+                page.translationY = offset
+            }
+        }
+        binding.viewPagerWallets.adapter = walletsAdapter
     }
 
     private fun configureAppBar() {

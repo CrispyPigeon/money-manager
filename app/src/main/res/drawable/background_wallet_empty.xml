@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/margin_general_medium"/>
+    <solid android:color="@color/new_wallet"/>
+    <stroke android:dashGap="@dimen/margin_general"
+            android:dashWidth="@dimen/margin_general"
+            android:width="@dimen/margin_general_tiny"
+            android:color="@color/field_text_positive"/>
+</shape>

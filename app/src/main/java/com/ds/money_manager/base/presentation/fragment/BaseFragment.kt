@@ -10,8 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
-import com.ds.money_manager.R
-import com.ds.money_manager.feature.view.LoadingDialog
+import com.ds.money_manager.feature.views.dialogs.LoadingDialog
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {

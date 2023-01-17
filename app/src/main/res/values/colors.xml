@@ -13,4 +13,5 @@
     <color name="button_disabled_text">#9596B7</color>
     <color name="button_active">#3FDEAE</color>
     <color name="button_active_text">#FFFFFF</color>
+    <color name="new_wallet">#F1F5FF</color>
 </resources>
