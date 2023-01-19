@@ -44,6 +44,15 @@
         <item name="android:textSize">@dimen/textsize_header_1</item>
     </style>
 
+    <style name="TextView.Header.Balance">
+        <item name="android:textSize">@dimen/textsize_wallet_balance</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="TextView.Header.Balance.2">
+        <item name="android:textSize">@dimen/textsize_wallet_balance_2</item>
+    </style>
+
     <style name="TextView.Hint">
         <item name="android:textSize">@dimen/textsize_standard</item>
         <item name="android:textColor">@color/field_text_highlight</item>
@@ -57,6 +66,11 @@
 
     <style name="TextView.DialogDescription">
         <item name="android:textSize">@dimen/textsize_dialog_description</item>
+    </style>
+
+    <style name="TextView.WalletTitle">
+        <item name="android:textSize">@dimen/textsize_wallet_title</item>
+        <item name="android:textColor">@color/text_white</item>
     </style>
 
     <!-- EditText styles -->

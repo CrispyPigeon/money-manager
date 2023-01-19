@@ -26,7 +26,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
         binding.viewPagerWallets.clipChildren = false
         binding.viewPagerWallets.offscreenPageLimit = 3
         val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.margin_general)
-        val offsetPx = resources.getDimensionPixelOffset(R.dimen.margin_general_medium)
+        val offsetPx = resources.getDimensionPixelOffset(R.dimen.margin_view_pager)
         binding.viewPagerWallets.setPageTransformer { page, position ->
             val viewPager = page.parent.parent as ViewPager2
             val offset = position * -(2 * offsetPx + pageMarginPx)
