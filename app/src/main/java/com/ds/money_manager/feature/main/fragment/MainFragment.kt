@@ -9,15 +9,31 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragment.BaseFragment
+import com.ds.money_manager.base.presentation.fragment.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentMainBinding
 import com.ds.money_manager.feature.main.fragment.adapters.WalletsViewPagerAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
+@AndroidEntryPoint
+class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>() {
     private var walletsAdapter: WalletsViewPagerAdapter? = null
 
     override fun initViews() {
         configureAppBar()
         configureWalletsRv()
+    }
+
+    override fun initListeners() {
+        binding.appBarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            binding.textViewTotalBalance.alpha =
+                (appBarLayout.totalScrollRange + verticalOffset).toFloat() / appBarLayout.totalScrollRange
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getWalletsDetails()
     }
 
     private fun configureWalletsRv() {
@@ -45,13 +61,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 
     private fun configureAppBar() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
-    }
-
-    override fun initListeners() {
-        binding.appBarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-            binding.textViewTotalBalance.alpha =
-                (appBarLayout.totalScrollRange + verticalOffset).toFloat() / appBarLayout.totalScrollRange
-        }
     }
 
     override fun onCreateView(

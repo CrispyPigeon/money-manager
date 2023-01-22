@@ -54,7 +54,7 @@ class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewM
         }
 
         viewModel.signInSuccessEvent.observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), "YES", Toast.LENGTH_LONG).show()
+            navController.navigate(R.id.action_signInFragment_to_mainFragment)
         }
     }
 

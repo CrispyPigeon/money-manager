@@ -2,7 +2,6 @@ package com.ds.money_manager.feature.signup
 
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragment.DialogsSupportFragment
@@ -72,8 +71,8 @@ class SignUpFragment : DialogsSupportFragment<FragmentSignUpBinding, SignUpViewM
             configureLoginButton()
         }
 
-        viewModel.authSuccessEvent.observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), "YES", Toast.LENGTH_LONG).show()
+        viewModel.authSuccessEvent.observe(viewLifecycleOwner) {
+            navController.navigate(R.id.action_signUpFragment_to_mainFragment)
         }
     }
 

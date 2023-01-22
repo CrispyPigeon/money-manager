@@ -16,7 +16,7 @@ object CommonModule {
 
     @Singleton
     @Provides
-    fun provideSharedPreferences(@ApplicationContext context: Context): AppSharedPreferences{
+    fun provideSharedPreferences(@ApplicationContext context: Context): AppSharedPreferences {
         return AppSharedPreferencesImpl(context)
     }
 }
