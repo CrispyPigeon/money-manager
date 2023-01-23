@@ -36,4 +36,5 @@
     <dimen name="textsize_wallet_title">20sp</dimen>
     <dimen name="textsize_wallet_balance">32sp</dimen>
     <dimen name="textsize_wallet_balance_2">16sp</dimen>
+    <dimen name="textsize_statistic">20sp</dimen>
 </resources>

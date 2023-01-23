@@ -1,11 +1,13 @@
 package com.ds.money_manager.feature.main.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
+import app.futured.donut.DonutSection
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentMainBinding
@@ -20,6 +22,24 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     override fun initViews() {
         configureAppBar()
         configureWalletsRv()
+        configureDiagram()
+    }
+
+    private fun configureDiagram() {
+        val section1 = DonutSection(
+            name = "section_1",
+            color = Color.parseColor("#FB1D32"),
+            amount = 1f
+        )
+
+        val section2 = DonutSection(
+            name = "section_2",
+            color = Color.parseColor("#FFB98E"),
+            amount = 1f
+        )
+
+        binding.donutViewStatistic.cap = 5f
+        binding.donutViewStatistic .submitData(listOf(section1, section2))
     }
 
     override fun initListeners() {

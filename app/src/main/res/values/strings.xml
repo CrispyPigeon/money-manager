@@ -22,4 +22,6 @@
     <string name="total_balance">Total Balance</string>
     <string name="wallets">Wallets</string>
     <string name="plus">+</string>
+    <string name="statistics">Statistics</string>
+    <string name="total_statistics">Total Statistic</string>
 </resources>
