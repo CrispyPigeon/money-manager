@@ -1,4 +1,4 @@
-package com.ds.money_manager.base.presentation.fragment
+package com.ds.money_manager.base.presentation.fragments
 
 import androidx.viewbinding.ViewBinding
 import com.ds.money_manager.Constants.ERROR_DIALOG_TAG

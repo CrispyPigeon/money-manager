@@ -1,4 +1,4 @@
-package com.ds.money_manager.base.presentation.dialog
+package com.ds.money_manager.base.presentation.dialogs
 
 abstract class StandardDialogFragment : SizeFixedDialogFragment() {
     protected var title = ""

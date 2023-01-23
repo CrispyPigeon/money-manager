@@ -4,7 +4,7 @@ import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import com.ds.money_manager.R
-import com.ds.money_manager.base.presentation.fragment.DialogsSupportFragment
+import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentSignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
 

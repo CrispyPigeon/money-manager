@@ -1,4 +1,4 @@
-package com.ds.money_manager.base.presentation.fragment
+package com.ds.money_manager.base.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -4,18 +4,17 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.ds.money_manager.R
-import com.ds.money_manager.base.presentation.fragment.BaseFragment
-import com.ds.money_manager.base.presentation.fragment.DialogsSupportFragment
+import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentMainBinding
 import com.ds.money_manager.feature.main.fragment.adapters.WalletsViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>() {
+
     private var walletsAdapter: WalletsViewPagerAdapter? = null
 
     override fun initViews() {
@@ -27,6 +26,10 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         binding.appBarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             binding.textViewTotalBalance.alpha =
                 (appBarLayout.totalScrollRange + verticalOffset).toFloat() / appBarLayout.totalScrollRange
+        }
+
+        viewModel.wallets.observe(viewLifecycleOwner) {
+            walletsAdapter!!.setItems(it)
         }
     }
 

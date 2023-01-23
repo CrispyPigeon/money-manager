@@ -1,14 +1,11 @@
 package com.ds.money_manager.feature.signup
 
 import com.ds.money_manager.R
-import com.ds.money_manager.base.helpers.awaitFold
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
-import com.ds.money_manager.base.presentation.state.BaseViewState
 import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
 import com.ds.money_manager.usecases.SaveAuthDataUseCase
 import com.ds.money_manager.usecases.SignUpRequestUseCase
-import com.ds.money_manager.utils.ApiException
 import com.ds.money_manager.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

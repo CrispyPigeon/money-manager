@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.ds.money_manager.R
-import com.ds.money_manager.base.presentation.dialog.StandardDialogFragment
+import com.ds.money_manager.base.presentation.dialogs.StandardDialogFragment
 
 
 class LoadingDialog : StandardDialogFragment() {

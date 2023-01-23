@@ -1,12 +1,10 @@
 package com.ds.money_manager.feature.signin
 
 import android.text.InputType
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.ds.money_manager.R
-import com.ds.money_manager.base.presentation.fragment.DialogsSupportFragment
+import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentSignInBinding
-import com.ds.money_manager.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

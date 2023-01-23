@@ -1,4 +1,4 @@
-package com.ds.money_manager.base.presentation.dialog
+package com.ds.money_manager.base.presentation.dialogs
 
 import android.content.res.Resources
 import android.graphics.Color
