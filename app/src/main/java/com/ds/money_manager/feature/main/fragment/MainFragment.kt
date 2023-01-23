@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import app.futured.donut.DonutSection
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
+import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.databinding.FragmentMainBinding
 import com.ds.money_manager.feature.main.fragment.adapters.WalletsViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,24 +23,22 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     override fun initViews() {
         configureAppBar()
         configureWalletsRv()
-        configureDiagram()
     }
 
-    private fun configureDiagram() {
-        val section1 = DonutSection(
-            name = "section_1",
-            color = Color.parseColor("#FB1D32"),
-            amount = 1f
-        )
-
-        val section2 = DonutSection(
-            name = "section_2",
-            color = Color.parseColor("#FFB98E"),
-            amount = 1f
-        )
+    private fun configureDiagram(statisticItems: List<StatisticItemResponse>) {
+        val sections = mutableListOf<DonutSection>()
+        statisticItems.forEach {
+            sections.add(
+                DonutSection(
+                    name = it.name,
+                    color = Color.parseColor(it.color),
+                    amount = it.amount.toFloat()
+                )
+            )
+        }
 
         binding.donutViewStatistic.cap = 5f
-        binding.donutViewStatistic .submitData(listOf(section1, section2))
+        binding.donutViewStatistic.submitData(sections)
     }
 
     override fun initListeners() {
@@ -51,12 +50,17 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         viewModel.wallets.observe(viewLifecycleOwner) {
             walletsAdapter!!.setItems(it)
         }
+
+        viewModel.totalStatisticData.observe(viewLifecycleOwner) {
+            configureDiagram(it)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getWalletsDetails()
+        viewModel.getStatisticData()
     }
 
     private fun configureWalletsRv() {

@@ -109,6 +109,7 @@
                 android:id="@+id/constraint_layout_statistics"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_view_pager_wallet"
                 android:layout_marginHorizontal="@dimen/margin_general"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

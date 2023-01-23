@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface MoneyManagerApi {
 
@@ -19,4 +20,10 @@ interface MoneyManagerApi {
 
     @GET("wallet/all/details")
     fun getAllWalletsDetails(): Call<List<WalletDetailsResponse>>
+
+    @GET("statistic/by_date")
+    fun getTotalStatisticByDate(
+        @Query("dateFrom") dateFrom: String,
+        @Query("dateTo") dateTo: String
+    ): Call<List<StatisticItemResponse>>
 }
