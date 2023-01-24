@@ -3,6 +3,7 @@
     <dimen name="dialog_loading_width">330dp</dimen>
     <dimen name="view_pager_wallet_height">187dp</dimen>
     <dimen name="background_wallet_balance_horizontal_padding">13dp</dimen>
+    <dimen name="statistic_item_size">50dp</dimen>
 
 
     <!-- Margins and Paddings -->
@@ -17,6 +18,7 @@
     <dimen name="margin_top_view_pager_wallet">31dp</dimen>
     <dimen name="margin_vertical_view_pager">24dp</dimen>
     <dimen name="margin_view_pager">14dp</dimen>
+    <dimen name="margin_statistic_item">10dp</dimen>
 
     <dimen name="padding_entry_vertical">19dp</dimen>
 
@@ -37,4 +39,6 @@
     <dimen name="textsize_wallet_balance">32sp</dimen>
     <dimen name="textsize_wallet_balance_2">16sp</dimen>
     <dimen name="textsize_statistic">20sp</dimen>
+    <dimen name="textsize_statistic_percent">14sp</dimen>
+    <dimen name="textsize_expenses">16sp</dimen>
 </resources>

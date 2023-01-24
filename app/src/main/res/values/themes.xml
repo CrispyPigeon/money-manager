@@ -53,6 +53,14 @@
         <item name="android:textSize">@dimen/textsize_wallet_balance_2</item>
     </style>
 
+    <style name="TextView.Header.StatisticItem">
+        <item name="android:textSize">@dimen/textsize_standard</item>
+    </style>
+
+    <style name="TextView.Header.StatisticItem.Amount">
+        <item name="android:textSize">@dimen/textsize_statistic</item>
+    </style>
+
     <style name="TextView.Hint">
         <item name="android:textSize">@dimen/textsize_standard</item>
         <item name="android:textColor">@color/field_text_highlight</item>
@@ -71,6 +79,11 @@
     <style name="TextView.WalletTitle">
         <item name="android:textSize">@dimen/textsize_wallet_title</item>
         <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="TextView.StatisticItemPercentage">
+        <item name="android:textSize">@dimen/textsize_statistic_percent</item>
+        <item name="android:textColor">@color/field_text_highlight</item>
     </style>
 
     <!-- EditText styles -->

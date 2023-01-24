@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import app.futured.donut.DonutSection
@@ -12,33 +13,27 @@ import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.databinding.FragmentMainBinding
-import com.ds.money_manager.feature.main.fragment.adapters.WalletsViewPagerAdapter
+import com.ds.money_manager.feature.adapters.StatisticItemsAdapter
+import com.ds.money_manager.feature.adapters.WalletsViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>() {
 
     private var walletsAdapter: WalletsViewPagerAdapter? = null
+    private var statisticItemsAdapter: StatisticItemsAdapter? = null
 
     override fun initViews() {
         configureAppBar()
         configureWalletsRv()
+        configureStatisticItemsRv()
+        configureDiagram()
     }
 
-    private fun configureDiagram(statisticItems: List<StatisticItemResponse>) {
-        val sections = mutableListOf<DonutSection>()
-        statisticItems.forEach {
-            sections.add(
-                DonutSection(
-                    name = it.name,
-                    color = Color.parseColor(it.color),
-                    amount = it.amount.toFloat()
-                )
-            )
-        }
-
-        binding.donutViewStatistic.cap = 5f
-        binding.donutViewStatistic.submitData(sections)
+    private fun configureStatisticItemsRv() {
+        statisticItemsAdapter = StatisticItemsAdapter(requireContext())
+        binding.recyclerViewStatisticItems.adapter = statisticItemsAdapter
+        binding.recyclerViewStatisticItems.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun initListeners() {
@@ -52,7 +47,8 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         viewModel.totalStatisticData.observe(viewLifecycleOwner) {
-            configureDiagram(it)
+            setDiagramData(it)
+            statisticItemsAdapter!!.setItems(it)
         }
     }
 
@@ -61,6 +57,40 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
         viewModel.getWalletsDetails()
         viewModel.getStatisticData()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun setDiagramData(statisticItems: List<StatisticItemResponse>) {
+        val sections = mutableListOf<DonutSection>()
+
+        statisticItems.forEach {
+            sections.add(
+                DonutSection(
+                    name = it.name,
+                    color = Color.parseColor(it.color),
+                    amount = it.amount.toFloat()
+                )
+            )
+        }
+
+        binding.donutViewStatistic.submitData(sections)
+    }
+
+    private fun configureDiagram() {
+        binding.donutViewStatistic.cap = 5f
     }
 
     private fun configureWalletsRv() {
@@ -88,19 +118,5 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
     private fun configureAppBar() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        setHasOptionsMenu(true)
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_main, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 }

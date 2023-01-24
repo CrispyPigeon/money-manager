@@ -24,4 +24,5 @@
     <string name="plus">+</string>
     <string name="statistics">Statistics</string>
     <string name="total_statistics">Total Statistic</string>
+    <string name="expenses">Expenses</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.ds.money_manager.feature.main.fragment.adapters
+package com.ds.money_manager.feature.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -45,7 +45,6 @@ class WalletsViewPagerAdapter : BaseRecyclerViewAdapter<BaseViewHolder, WalletIt
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             VIEW_TYPE_WALLET_DETAILS -> {
                 val binding = ItemWalletVpBinding.inflate(

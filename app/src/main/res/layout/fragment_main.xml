@@ -99,18 +99,18 @@
                 android:id="@+id/view_pager_wallets"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_pager_wallet_height"
-                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/margin_top_view_pager_wallet"
-                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraint_layout_wallets" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_layout_statistics"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_view_pager_wallet"
                 android:layout_marginHorizontal="@dimen/margin_general"
+                android:layout_marginTop="@dimen/margin_top_view_pager_wallet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_pager_wallets">
@@ -139,11 +139,11 @@
                 android:id="@+id/text_view_total_statistic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/textsize_statistic"
-                android:fontFamily="@font/lato_400"
-                android:textColor="@color/field_text_highlight"
                 android:layout_marginTop="@dimen/margin_general_small"
+                android:fontFamily="@font/lato_400"
                 android:text="@string/total_statistics"
+                android:textColor="@color/field_text_highlight"
+                android:textSize="@dimen/textsize_statistic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraint_layout_statistics" />
@@ -159,6 +159,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_total_statistic" />
+
+            <TextView
+                android:id="@+id/text_view_expenses_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_400"
+                android:text="@string/expenses"
+                android:textColor="@color/field_text_highlight"
+                android:textSize="@dimen/textsize_expenses"
+                app:layout_constraintBottom_toTopOf="@id/text_view_expenses_value"
+                app:layout_constraintEnd_toEndOf="@id/donut_view_statistic"
+                app:layout_constraintStart_toStartOf="@id/donut_view_statistic"
+                app:layout_constraintTop_toTopOf="@id/donut_view_statistic"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_view_expenses_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_600"
+                android:text="@string/expenses"
+                android:textColor="@color/field_text"
+                android:textSize="@dimen/textsize_standard"
+                app:layout_constraintBottom_toBottomOf="@id/donut_view_statistic"
+                app:layout_constraintEnd_toEndOf="@id/donut_view_statistic"
+                app:layout_constraintStart_toStartOf="@id/donut_view_statistic"
+                app:layout_constraintTop_toBottomOf="@id/text_view_expenses_title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_statistic_items"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_general_small"
+                app:layout_constraintTop_toBottomOf="@id/donut_view_statistic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
