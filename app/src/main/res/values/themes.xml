@@ -53,11 +53,11 @@
         <item name="android:textSize">@dimen/textsize_wallet_balance_2</item>
     </style>
 
-    <style name="TextView.Header.StatisticItem">
+    <style name="TextView.Header.Item">
         <item name="android:textSize">@dimen/textsize_standard</item>
     </style>
 
-    <style name="TextView.Header.StatisticItem.Amount">
+    <style name="TextView.Header.Item.Amount">
         <item name="android:textSize">@dimen/textsize_statistic</item>
     </style>
 
