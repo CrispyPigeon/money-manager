@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object ApiModule {
     private const val BASE_URL =
-        "https://moneymanagerapi-app-202301222308.mangosmoke-a06919da.germanywestcentral.azurecontainerapps.io/"
+        "https://money-manager-228.herokuapp.com"
 
     @Singleton
     @Provides
