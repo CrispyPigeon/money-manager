@@ -7,6 +7,8 @@ import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
 import com.ds.money_manager.data.model.EmptyWallet
 import com.ds.money_manager.data.model.WalletItem
 import com.ds.money_manager.data.model.api.StatisticItemResponse
+import com.ds.money_manager.data.model.api.TransactionResponse
+import com.ds.money_manager.usecases.GetLastTransactionsUseCase
 import com.ds.money_manager.usecases.GetTotalStatisticDataUseCase
 import com.ds.money_manager.usecases.GetWalletsDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,10 +18,12 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     val signInRequestUseCase: GetWalletsDetailsUseCase,
-    val getTotalStatisticDataUseCase: GetTotalStatisticDataUseCase
+    val getTotalStatisticDataUseCase: GetTotalStatisticDataUseCase,
+    val getLastTransactionsUseCase: GetLastTransactionsUseCase
 ) : DialogsViewModel() {
 
     val wallets = MutableLiveData<List<WalletItem>>()
+    val transactions = MutableLiveData<List<TransactionResponse>>()
     val totalStatisticData = MutableLiveData<List<StatisticItemResponse>>()
 
     fun getWalletsDetails() {
@@ -43,12 +47,28 @@ class MainViewModel @Inject constructor(
 
     fun getStatisticData() {
         launchUI {
-            val initial = LocalDate.of(2022, 11, 1)
+            val initial = LocalDate.now()
             val start = initial.withDayOfMonth(1)
             val end = initial.withDayOfMonth(initial.month.length(initial.isLeapYear))
             getTotalStatisticDataUseCase(start, end).awaitFoldApi(
                 {
                     totalStatisticData.value = it
+                },
+                {
+                    showError(it.title, it.description)
+                },
+                {
+                    showError("", it.message!!)
+                }
+            )
+        }
+    }
+
+    fun getLastTransactions(){
+        launchUI {
+            getLastTransactionsUseCase(5).awaitFoldApi(
+                {
+                    transactions.value = it
                 },
                 {
                     showError(it.title, it.description)

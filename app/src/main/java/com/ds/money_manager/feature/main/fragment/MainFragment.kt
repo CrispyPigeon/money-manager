@@ -14,6 +14,7 @@ import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.databinding.FragmentMainBinding
 import com.ds.money_manager.feature.adapters.StatisticItemsAdapter
+import com.ds.money_manager.feature.adapters.TransactionsAdapter
 import com.ds.money_manager.feature.adapters.WalletsViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,18 +23,14 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
     private var walletsAdapter: WalletsViewPagerAdapter? = null
     private var statisticItemsAdapter: StatisticItemsAdapter? = null
+    private var transactionsAdapter: TransactionsAdapter? = null
 
     override fun initViews() {
         configureAppBar()
         configureWalletsRv()
         configureStatisticItemsRv()
+        configureTransactionsRv()
         configureDiagram()
-    }
-
-    private fun configureStatisticItemsRv() {
-        statisticItemsAdapter = StatisticItemsAdapter(requireContext())
-        binding.recyclerViewStatisticItems.adapter = statisticItemsAdapter
-        binding.recyclerViewStatisticItems.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun initListeners() {
@@ -50,6 +47,10 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
             setDiagramData(it)
             statisticItemsAdapter!!.setItems(it)
         }
+
+        viewModel.transactions.observe(viewLifecycleOwner) {
+            transactionsAdapter!!.setItems(it)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,6 +58,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
         viewModel.getWalletsDetails()
         viewModel.getStatisticData()
+        viewModel.getLastTransactions()
     }
 
     override fun onCreateView(
@@ -114,6 +116,18 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
             }
         }
         binding.viewPagerWallets.adapter = walletsAdapter
+    }
+
+    private fun configureTransactionsRv() {
+        transactionsAdapter = TransactionsAdapter(requireContext())
+        binding.recyclerViewTransactionItems.adapter = transactionsAdapter
+        binding.recyclerViewTransactionItems.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun configureStatisticItemsRv() {
+        statisticItemsAdapter = StatisticItemsAdapter(requireContext())
+        binding.recyclerViewStatisticItems.adapter = statisticItemsAdapter
+        binding.recyclerViewStatisticItems.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun configureAppBar() {

@@ -22,14 +22,14 @@
         android:layout_marginHorizontal="@dimen/margin_statistic_item"
         style="@style/TextView.Header.Item"
         android:text="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@id/text_view_percent"
+        app:layout_constraintBottom_toTopOf="@id/text_view_description"
         app:layout_constraintEnd_toStartOf="@id/text_view_amount"
         app:layout_constraintStart_toEndOf="@id/image_view_icon"
         app:layout_constraintTop_toTopOf="@id/image_view_icon"
         app:layout_constraintVertical_chainStyle="spread" />
 
     <TextView
-        android:id="@+id/text_view_percent"
+        android:id="@+id/text_view_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/app_name"

@@ -21,9 +21,22 @@ interface MoneyManagerApi {
     @GET("wallet/all/details")
     fun getAllWalletsDetails(): Call<List<WalletDetailsResponse>>
 
-    @GET("statistic/by_date")
+    @GET("statistic/items")
     fun getTotalStatisticByDate(
         @Query("dateFrom") dateFrom: String,
         @Query("dateTo") dateTo: String
     ): Call<List<StatisticItemResponse>>
+
+    @GET("statistic/transactions/all")
+    fun getAllTransactionsByDate(
+        @Query("dateFrom") dateFrom: String,
+        @Query("dateTo") dateTo: String,
+        @Query("offset") offset: Int = 0,
+        @Query("limit") limit: Int = 20
+    ): Call<List<TransactionResponse>>
+
+    @GET("statistic/transactions/last")
+    fun getLastTransactions(
+        @Query("limit") limit: Int = 20
+    ): Call<List<TransactionResponse>>
 }

@@ -64,4 +64,15 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
+
+    override fun getLastTransactions(limit: Int): List<TransactionResponse> {
+        val result = moneyManagerApi.getLastTransactions(limit).execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
 }
