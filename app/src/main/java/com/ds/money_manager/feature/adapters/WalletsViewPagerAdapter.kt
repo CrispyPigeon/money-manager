@@ -9,6 +9,7 @@ import com.ds.money_manager.data.model.WalletItem
 import com.ds.money_manager.data.model.api.WalletDetailsResponse
 import com.ds.money_manager.databinding.ItemWalletEmptyVpBinding
 import com.ds.money_manager.databinding.ItemWalletVpBinding
+import com.ds.money_manager.utils.CurrencyUtils
 
 class WalletsViewPagerAdapter : BaseRecyclerViewAdapter<BaseViewHolder, WalletItem>() {
 
@@ -28,9 +29,9 @@ class WalletsViewPagerAdapter : BaseRecyclerViewAdapter<BaseViewHolder, WalletIt
         fun bind(item: WalletDetailsResponse) {
             with(binding) {
                 textViewWalletTitle.text = item.name
-                textViewWalletBalance.text = item.balance.toString()
-                textViewIncome.text = item.income.toString()
-                textViewOutcome.text = item.outcome.toString()
+                textViewWalletBalance.text = CurrencyUtils.showAmount(item.balance)
+                textViewIncome.text = CurrencyUtils.showAmount(item.income)
+                textViewOutcome.text = CurrencyUtils.showAmount(item.outcome)
             }
         }
     }

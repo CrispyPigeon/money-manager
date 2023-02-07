@@ -1,8 +1,10 @@
 package com.ds.money_manager.data.model.api
 
+import com.ds.money_manager.Constants.CURRENCY_SCALE
 import com.ds.money_manager.data.model.WalletItem
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 data class WalletDetailsResponse(
     @SerializedName("walletId") var walletId: Int,

@@ -7,6 +7,8 @@ import com.ds.money_manager.base.presentation.adapters.BaseRecyclerViewAdapter
 import com.ds.money_manager.base.presentation.viewholders.BaseViewHolder
 import com.ds.money_manager.data.model.api.TransactionResponse
 import com.ds.money_manager.databinding.ItemCommonBinding
+import com.ds.money_manager.extensions.LocalDateExtension.toDateString
+import com.ds.money_manager.utils.CurrencyUtils
 import com.ds.money_manager.utils.ImageUtils
 
 class TransactionsAdapter(val context: Context) :
@@ -27,8 +29,8 @@ class TransactionsAdapter(val context: Context) :
         with(holder.binding) {
             ImageUtils.loadPicture(context, item.typeImage, imageViewIcon)
             textViewName.text = item.name
-            textViewDescription.text = item.dateTime
-            textViewAmount.text = item.amount.toPlainString()
+            textViewDescription.text = item.dateTime.toDateString()
+            textViewAmount.text = CurrencyUtils.showAmount(item.amount)
         }
     }
 }

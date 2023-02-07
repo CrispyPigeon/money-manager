@@ -7,6 +7,7 @@ import com.ds.money_manager.base.presentation.adapters.BaseRecyclerViewAdapter
 import com.ds.money_manager.base.presentation.viewholders.BaseViewHolder
 import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.databinding.ItemCommonBinding
+import com.ds.money_manager.utils.CurrencyUtils
 import com.ds.money_manager.utils.ImageUtils
 
 class StatisticItemsAdapter(val context: Context) :
@@ -28,7 +29,7 @@ class StatisticItemsAdapter(val context: Context) :
             ImageUtils.loadPicture(context, item.image, imageViewIcon)
             textViewName.text = item.name
             textViewDescription.text = item.percent
-            textViewAmount.text = item.amount.toPlainString()
+            textViewAmount.text = CurrencyUtils.showAmount(item.amount)
         }
     }
 }
