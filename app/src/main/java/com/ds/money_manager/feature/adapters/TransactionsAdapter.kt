@@ -7,9 +7,9 @@ import com.ds.money_manager.base.presentation.adapters.BaseRecyclerViewAdapter
 import com.ds.money_manager.base.presentation.viewholders.BaseViewHolder
 import com.ds.money_manager.data.model.api.TransactionResponse
 import com.ds.money_manager.databinding.ItemCommonBinding
-import com.ds.money_manager.extensions.LocalDateExtension.toDateString
 import com.ds.money_manager.utils.CurrencyUtils
 import com.ds.money_manager.utils.ImageUtils
+import com.ds.money_manager.utils.StringUtils.toDateString
 
 class TransactionsAdapter(val context: Context) :
     BaseRecyclerViewAdapter<TransactionsAdapter.TransactionViewHolder, TransactionResponse>() {
