@@ -3,7 +3,7 @@ package com.ds.money_manager.base.presentation.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-abstract class DialogsViewModel : ViewModel() {
+abstract class DialogsSupportViewModel : ViewModel() {
     val loading = MutableLiveData<Boolean>()
     val error = MutableLiveData<Pair<String,String>>()
     val errorWithIds = MutableLiveData<Pair<Int,Int>>()

@@ -3,7 +3,7 @@ package com.ds.money_manager.feature.signup
 import com.ds.money_manager.R
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
-import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
+import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
 import com.ds.money_manager.usecases.SaveAuthDataUseCase
 import com.ds.money_manager.usecases.SignUpRequestUseCase
 import com.ds.money_manager.utils.SingleLiveEvent
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     val signUpRequestUseCase: SignUpRequestUseCase,
     val saveAuthDataUseCase: SaveAuthDataUseCase
-) : DialogsViewModel() {
+) : DialogsSupportViewModel() {
 
     val authSuccessEvent = SingleLiveEvent<Any>()
 
