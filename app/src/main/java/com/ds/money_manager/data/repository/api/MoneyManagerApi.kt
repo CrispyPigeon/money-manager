@@ -21,6 +21,10 @@ interface MoneyManagerApi {
     @GET("wallet/all/details")
     fun getAllWalletsDetails(): Call<List<WalletDetailsResponse>>
 
+    @GET("statistic/balance")
+    fun getTotalBalance(
+    ): Call<TotalBalanceResponse>
+
     @GET("statistic/items")
     fun getTotalStatisticByDate(
         @Query("dateFrom") dateFrom: String,

@@ -9,26 +9,30 @@ import com.ds.money_manager.data.model.WalletItem
 import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.data.model.api.TransactionResponse
 import com.ds.money_manager.usecases.GetLastTransactionsUseCase
+import com.ds.money_manager.usecases.GetTotalBalanceUseCase
 import com.ds.money_manager.usecases.GetTotalStatisticDataUseCase
 import com.ds.money_manager.usecases.GetWalletsDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.math.BigDecimal
 import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    val signInRequestUseCase: GetWalletsDetailsUseCase,
+    val getWalletDetailsUseCase: GetWalletsDetailsUseCase,
     val getTotalStatisticDataUseCase: GetTotalStatisticDataUseCase,
-    val getLastTransactionsUseCase: GetLastTransactionsUseCase
+    val getLastTransactionsUseCase: GetLastTransactionsUseCase,
+    val getTotalBalanceUseCase: GetTotalBalanceUseCase
 ) : DialogsViewModel() {
 
+    val totalBalance = MutableLiveData<BigDecimal>()
     val wallets = MutableLiveData<List<WalletItem>>()
     val transactions = MutableLiveData<List<TransactionResponse>>()
     val totalStatisticData = MutableLiveData<List<StatisticItemResponse>>()
 
     fun getWalletsDetails() {
         launchUI {
-            signInRequestUseCase().awaitFoldApi(
+            getWalletDetailsUseCase().awaitFoldApi(
                 {
                     val list = mutableListOf<WalletItem>()
                     list.addAll(it)
@@ -69,6 +73,22 @@ class MainViewModel @Inject constructor(
             getLastTransactionsUseCase(5).awaitFoldApi(
                 {
                     transactions.value = it
+                },
+                {
+                    showError(it.title, it.description)
+                },
+                {
+                    showError("", it.message!!)
+                }
+            )
+        }
+    }
+
+    fun getTotalBalance() {
+        launchUI {
+            getTotalBalanceUseCase().awaitFoldApi(
+                {
+                    totalBalance.value = it
                 },
                 {
                     showError(it.title, it.description)

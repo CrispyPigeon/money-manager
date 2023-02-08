@@ -4,6 +4,7 @@
     <dimen name="view_pager_wallet_height">187dp</dimen>
     <dimen name="background_wallet_balance_horizontal_padding">13dp</dimen>
     <dimen name="statistic_item_size">50dp</dimen>
+    <dimen name="fab_size">56dp</dimen>
 
 
     <!-- Margins and Paddings -->

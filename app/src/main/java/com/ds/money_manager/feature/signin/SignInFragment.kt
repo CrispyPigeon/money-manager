@@ -51,7 +51,7 @@ class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewM
             navController.navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
-        viewModel.signInSuccessEvent.observe(viewLifecycleOwner){
+        viewModel.signInSuccessEvent.observe(viewLifecycleOwner) {
             navController.navigate(R.id.action_signInFragment_to_mainFragment)
         }
     }

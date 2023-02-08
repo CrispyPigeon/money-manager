@@ -16,6 +16,7 @@ import com.ds.money_manager.databinding.FragmentMainBinding
 import com.ds.money_manager.feature.adapters.StatisticItemsAdapter
 import com.ds.money_manager.feature.adapters.TransactionsAdapter
 import com.ds.money_manager.feature.adapters.WalletsViewPagerAdapter
+import com.ds.money_manager.utils.CurrencyUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +40,10 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
                 (appBarLayout.totalScrollRange + verticalOffset).toFloat() / appBarLayout.totalScrollRange
         }
 
+        viewModel.totalBalance.observe(viewLifecycleOwner) {
+            binding.collapsingToolbar.title = CurrencyUtils.showAmount(it)
+        }
+
         viewModel.wallets.observe(viewLifecycleOwner) {
             walletsAdapter!!.setItems(it)
         }
@@ -56,6 +61,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getTotalBalance()
         viewModel.getWalletsDetails()
         viewModel.getStatisticData()
         viewModel.getLastTransactions()

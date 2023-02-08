@@ -4,6 +4,7 @@ import com.ds.money_manager.data.model.api.*
 import com.ds.money_manager.data.repository.api.MoneyManagerApi
 import com.ds.money_manager.utils.ApiErrorUtils
 import com.ds.money_manager.utils.ApiException
+import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -28,6 +29,17 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
         val result = moneyManagerApi.signUp(SignUpRequest(name, password)).execute()
         if (result.isSuccessful && result.body() != null)
             return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
+    override fun getTotalBalance(): BigDecimal {
+        val result = moneyManagerApi.getTotalBalance().execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!.totalBalance
         else {
             val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
             apiError?.let { throw ApiException(it.title, it.description) }
