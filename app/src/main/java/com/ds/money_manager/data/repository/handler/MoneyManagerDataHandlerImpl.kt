@@ -20,7 +20,7 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
             return result.body()!!
         else {
             val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
-            apiError?.let { throw ApiException(it.title, it.description) }
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
@@ -31,7 +31,18 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
             return result.body()!!
         else {
             val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
-            apiError?.let { throw ApiException(it.title, it.description) }
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
+    override fun checkToken(): Boolean {
+        val result = moneyManagerApi.checkToken().execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
@@ -42,7 +53,7 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
             return result.body()!!.totalBalance
         else {
             val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
-            apiError?.let { throw ApiException(it.title, it.description) }
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
@@ -53,7 +64,7 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
             return result.body()!!
         else {
             val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
-            apiError?.let { throw ApiException(it.title, it.description) }
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
@@ -72,7 +83,7 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
             return result.body()!!
         else {
             val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
-            apiError?.let { throw ApiException(it.title, it.description) }
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
@@ -83,7 +94,7 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
             return result.body()!!
         else {
             val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
-            apiError?.let { throw ApiException(it.title, it.description) }
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }

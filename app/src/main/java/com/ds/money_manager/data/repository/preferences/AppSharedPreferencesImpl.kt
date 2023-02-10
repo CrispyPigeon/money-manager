@@ -8,6 +8,7 @@ class AppSharedPreferencesImpl(context: Context) : AppSharedPreferences {
     private val TOKEN_KEY = "TOKEN_KEY"
     private val USERNAME_KEY = "USERNAME_KEY"
     private val PASSWORD_KEY = "PASSWORD_KEY"
+    private val IS_AUTHORIZED_KEY = "IS_AUTHORIZED_KEY"
 
     private val preferences: SharedPreferences
 
@@ -39,15 +40,24 @@ class AppSharedPreferencesImpl(context: Context) : AppSharedPreferences {
             apply()
         }
 
+    override var isAuthorized: Boolean
+        get() = preferences.getBoolean(IS_AUTHORIZED_KEY, false)
+        set(value) = with(preferences.edit()) {
+            putBoolean(IS_AUTHORIZED_KEY, value)
+            apply()
+        }
+
     override fun signIn(token: String, username: String, password: String) {
         this.token = token
         this.username = username
         this.password = password
+        this.isAuthorized = true
     }
 
     override fun logOut() {
         this.token = ""
         this.username = ""
         this.password = ""
+        this.isAuthorized = false
     }
 }

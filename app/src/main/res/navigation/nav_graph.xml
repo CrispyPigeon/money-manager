@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/introFragment">
 
     <fragment
         android:id="@+id/signInFragment"
@@ -32,4 +32,25 @@
         android:id="@+id/mainFragment"
         android:name="com.ds.money_manager.feature.main.fragment.MainFragment"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.ds.money_manager.feature.intro.IntroFragment"
+        android:label="IntroFragment" >
+        <action
+            android:id="@+id/action_introFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_introFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

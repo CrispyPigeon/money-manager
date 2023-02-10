@@ -11,6 +11,7 @@ import java.util.Date
 interface MoneyManagerDataHandler {
     fun signIn(name: String, password: String): SignInResponse
     fun signUp(name: String, password: String): SignUpResponse
+    fun checkToken(): Boolean
     fun getTotalBalance(): BigDecimal
     fun getAllWalletsDetails(): List<WalletDetailsResponse>
     fun getTotalStatisticByDate(dateFrom: LocalDate, dateTo: LocalDate): List<StatisticItemResponse>
