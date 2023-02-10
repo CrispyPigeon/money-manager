@@ -2,7 +2,7 @@ package com.ds.money_manager.feature.signin
 
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
-import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
+import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
 import com.ds.money_manager.usecases.SaveAuthDataUseCase
 import com.ds.money_manager.usecases.SignInRequestUseCase
 import com.ds.money_manager.utils.SingleLiveEvent
@@ -14,14 +14,14 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
     val signInRequestUseCase: SignInRequestUseCase,
     val saveAuthDataUseCase: SaveAuthDataUseCase
-) : DialogsViewModel() {
+) : DialogsSupportViewModel() {
 
     val signInSuccessEvent = SingleLiveEvent<Any>()
 
     fun signIn(name: String, password: String) {
         launchUI {
             changeLoadingState(true)
-            delay(2000)
+            delay(1000)
             signInRequestUseCase(name, password).awaitFoldApi(
                 {
                     saveAuthDataUseCase(name, password, it.token)

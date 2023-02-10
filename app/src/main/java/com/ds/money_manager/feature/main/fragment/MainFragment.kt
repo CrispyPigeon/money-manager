@@ -16,7 +16,9 @@ import com.ds.money_manager.databinding.FragmentMainBinding
 import com.ds.money_manager.feature.adapters.StatisticItemsAdapter
 import com.ds.money_manager.feature.adapters.TransactionsAdapter
 import com.ds.money_manager.feature.adapters.WalletsViewPagerAdapter
+import com.ds.money_manager.helpers.AppBarStateChangeListener
 import com.ds.money_manager.utils.CurrencyUtils
+import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +29,15 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     private var transactionsAdapter: TransactionsAdapter? = null
 
     override fun initViews() {
+        super.initViews()
+
+        loadingDialog.setText(
+            getString(R.string.dialog_loading_title),
+            getString(R.string.dialog_loading_data_description)
+        )
+
         configureAppBar()
+        configureSwipeRefreshLayout()
         configureWalletsRv()
         configureStatisticItemsRv()
         configureTransactionsRv()
@@ -35,9 +45,16 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     }
 
     override fun initListeners() {
+        super.initListeners()
+
         binding.appBarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             binding.textViewTotalBalance.alpha =
                 (appBarLayout.totalScrollRange + verticalOffset).toFloat() / appBarLayout.totalScrollRange
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getAllData()
+            binding.swipeRefreshLayout.isRefreshing = false
         }
 
         viewModel.totalBalance.observe(viewLifecycleOwner) {
@@ -61,10 +78,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getTotalBalance()
-        viewModel.getWalletsDetails()
-        viewModel.getStatisticData()
-        viewModel.getLastTransactions()
+        viewModel.getAllData()
     }
 
     override fun onCreateView(
@@ -138,5 +152,16 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
     private fun configureAppBar() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+    }
+
+    private fun configureSwipeRefreshLayout() {
+        binding.appBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+                if (state == State.EXPANDED)
+                    binding.swipeRefreshLayout.setOnChildScrollUpCallback { parent, child -> false }
+                else
+                    binding.swipeRefreshLayout.setOnChildScrollUpCallback { parent, child -> true }
+            }
+        })
     }
 }

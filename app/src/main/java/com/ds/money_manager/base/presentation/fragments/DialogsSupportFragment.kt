@@ -3,11 +3,11 @@ package com.ds.money_manager.base.presentation.fragments
 import androidx.viewbinding.ViewBinding
 import com.ds.money_manager.Constants.ERROR_DIALOG_TAG
 import com.ds.money_manager.Constants.LOADING_DIALOG_TAG
-import com.ds.money_manager.base.presentation.viewmodels.DialogsViewModel
+import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
 import com.ds.money_manager.feature.views.dialogs.AlertDialog
 import com.ds.money_manager.feature.views.dialogs.LoadingDialog
 
-abstract class DialogsSupportFragment<VB : ViewBinding, VM : DialogsViewModel> : BaseFragment<VB,VM> () {
+abstract class DialogsSupportFragment<VB : ViewBinding, VM : DialogsSupportViewModel> : BaseFragment<VB,VM> () {
 
     lateinit var loadingDialog: LoadingDialog
     lateinit var errorDialog: AlertDialog
