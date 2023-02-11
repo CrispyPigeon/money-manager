@@ -25,6 +25,11 @@
         <item name="android:fontFamily">@font/lato_400</item>
     </style>
 
+    <style name="ToolbarStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
     <!-- Dialogs styles -->
 
     <style name="MyAlertDialog" parent="Theme.AppCompat.Dialog">
@@ -95,6 +100,13 @@
         <item name="android:textColorHint">@color/field_text_place_holder</item>
         <item name="android:maxLines">1</item>
         <item name="android:background">@drawable/background_entry</item>
+    </style>
+
+    <!-- Image styles-->
+
+    <style name="ImageViewBackButton">
+        <item name="android:src">@drawable/ic_arrow_back</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
 
     <!-- Button styles -->
