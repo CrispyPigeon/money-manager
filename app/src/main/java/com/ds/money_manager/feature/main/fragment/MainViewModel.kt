@@ -8,10 +8,8 @@ import com.ds.money_manager.data.model.EmptyWallet
 import com.ds.money_manager.data.model.WalletItem
 import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.data.model.api.TransactionResponse
-import com.ds.money_manager.usecases.GetLastTransactionsUseCase
-import com.ds.money_manager.usecases.GetTotalBalanceUseCase
-import com.ds.money_manager.usecases.GetTotalStatisticDataUseCase
-import com.ds.money_manager.usecases.GetWalletsDetailsUseCase
+import com.ds.money_manager.usecases.*
+import com.ds.money_manager.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import java.math.BigDecimal
@@ -23,13 +21,15 @@ class MainViewModel @Inject constructor(
     val getWalletDetailsUseCase: GetWalletsDetailsUseCase,
     val getTotalStatisticDataUseCase: GetTotalStatisticDataUseCase,
     val getLastTransactionsUseCase: GetLastTransactionsUseCase,
-    val getTotalBalanceUseCase: GetTotalBalanceUseCase
+    val getTotalBalanceUseCase: GetTotalBalanceUseCase,
+    val logOutUseCase: LogOutUseCase
 ) : DialogsSupportViewModel() {
 
     val totalBalance = MutableLiveData<BigDecimal>()
     val wallets = MutableLiveData<List<WalletItem>>()
     val transactions = MutableLiveData<List<TransactionResponse>>()
     val totalStatisticData = MutableLiveData<List<StatisticItemResponse>>()
+    val logOutSuccessEvent = SingleLiveEvent<Any>()
 
     suspend fun getWalletsDetails() {
         getWalletDetailsUseCase().awaitFoldApi(
@@ -103,5 +103,10 @@ class MainViewModel @Inject constructor(
             getLastTransactions()
             changeLoadingState(false)
         }
+    }
+
+    fun logOut() {
+        logOutUseCase()
+        logOutSuccessEvent.call()
     }
 }

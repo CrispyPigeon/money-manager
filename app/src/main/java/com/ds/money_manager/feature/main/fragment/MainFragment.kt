@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
 import app.futured.donut.DonutSection
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
@@ -57,6 +58,17 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
             binding.swipeRefreshLayout.isRefreshing = false
         }
 
+
+        binding.viewPagerWallets.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                if (!binding.swipeRefreshLayout.isRefreshing) {
+                    binding.swipeRefreshLayout.isEnabled = state == SCROLL_STATE_IDLE
+                }
+            }
+        })
+
         viewModel.totalBalance.observe(viewLifecycleOwner) {
             binding.collapsingToolbar.title = CurrencyUtils.showAmount(it)
         }
@@ -72,6 +84,10 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
         viewModel.transactions.observe(viewLifecycleOwner) {
             transactionsAdapter!!.setItems(it)
+        }
+
+        viewModel.logOutSuccessEvent.observe(viewLifecycleOwner) {
+            navController.navigate(R.id.action_mainFragment_to_signInFragment)
         }
     }
 
@@ -93,6 +109,17 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_logout -> {
+                viewModel.logOut()
+                true
+            }
+            else ->
+                super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setDiagramData(statisticItems: List<StatisticItemResponse>) {
