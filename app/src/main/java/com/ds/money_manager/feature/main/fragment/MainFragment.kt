@@ -13,6 +13,7 @@ import app.futured.donut.DonutSection
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.data.model.api.StatisticItemResponse
+import com.ds.money_manager.data.model.api.WalletDetailsResponse
 import com.ds.money_manager.databinding.FragmentMainBinding
 import com.ds.money_manager.feature.adapters.StatisticItemsAdapter
 import com.ds.money_manager.feature.adapters.TransactionsAdapter
@@ -32,7 +33,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     override fun initViews() {
         super.initViews()
 
-        loadingDialog.setText(
+        loadingDialog?.setText(
             getString(R.string.dialog_loading_title),
             getString(R.string.dialog_loading_data_description)
         )
@@ -68,6 +69,20 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
                 }
             }
         })
+
+        walletsAdapter!!.onClickListener = { item, _ ->
+            when (item) {
+                is WalletDetailsResponse -> {
+                    val action =
+                        MainFragmentDirections.actionMainFragmentToWalletFragment(item.walletId)
+                    navController.navigate(action)
+                }
+                else -> {
+                    navController.navigate(R.id.action_mainFragment_to_walletFragment)
+                }
+
+            }
+        }
 
         viewModel.totalBalance.observe(viewLifecycleOwner) {
             binding.collapsingToolbar.title = CurrencyUtils.showAmount(it)

@@ -1,5 +1,6 @@
 package com.ds.money_manager.feature.signup
 
+import androidx.lifecycle.viewModelScope
 import com.ds.money_manager.R
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
@@ -36,7 +37,7 @@ class SignUpViewModel @Inject constructor(
 
             changeLoadingState(true)
             delay(2000)
-            signUpRequestUseCase(name, password).awaitFoldApi(
+            signUpRequestUseCase(viewModelScope,name, password).awaitFoldApi(
                 {
                     saveAuthDataUseCase(name, password, it.token)
                     authSuccessEvent.call()

@@ -1,6 +1,7 @@
 package com.ds.money_manager.feature.main.fragment
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -32,7 +33,7 @@ class MainViewModel @Inject constructor(
     val logOutSuccessEvent = SingleLiveEvent<Any>()
 
     suspend fun getWalletsDetails() {
-        getWalletDetailsUseCase().awaitFoldApi(
+        getWalletDetailsUseCase(viewModelScope).awaitFoldApi(
             {
                 val list = mutableListOf<WalletItem>()
                 list.addAll(it)
@@ -52,7 +53,7 @@ class MainViewModel @Inject constructor(
         val initial = LocalDate.now()
         val start = initial.withDayOfMonth(1)
         val end = initial.withDayOfMonth(initial.month.length(initial.isLeapYear))
-        getTotalStatisticDataUseCase(start, end).awaitFoldApi(
+        getTotalStatisticDataUseCase(viewModelScope,start, end).awaitFoldApi(
             {
                 totalStatisticData.value = it
             },
@@ -66,7 +67,7 @@ class MainViewModel @Inject constructor(
     }
 
     suspend fun getLastTransactions() {
-        getLastTransactionsUseCase(5).awaitFoldApi(
+        getLastTransactionsUseCase(viewModelScope,5).awaitFoldApi(
             {
                 transactions.value = it
             },
@@ -80,7 +81,7 @@ class MainViewModel @Inject constructor(
     }
 
     suspend fun getTotalBalance() {
-        getTotalBalanceUseCase().awaitFoldApi(
+        getTotalBalanceUseCase(viewModelScope).awaitFoldApi(
             {
                 totalBalance.value = it
             },

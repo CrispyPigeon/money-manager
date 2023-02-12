@@ -1,5 +1,8 @@
 package com.ds.money_manager.base.helpers
 
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ds.money_manager.utils.ApiException
 import com.github.kittinunf.result.Result
 import kotlinx.coroutines.*
@@ -8,16 +11,20 @@ import kotlin.coroutines.CoroutineContext
 typealias Response<K> = Deferred<Result<K, Exception>>
 
 @OptIn(DelicateCoroutinesApi::class)
-fun launchUI(
+fun LifecycleCoroutineScope.launchUI(
     context: CoroutineContext = Dispatchers.Main,
     start: CoroutineStart = CoroutineStart.DEFAULT,
     block: suspend CoroutineScope.() -> Unit
-): Job = GlobalScope.launch(context, start, block)
+): Job = this.launch(context, start, block)
 
+fun ViewModel.launchUI(
+    context: CoroutineContext = Dispatchers.Main,
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    block: suspend CoroutineScope.() -> Unit
+): Job = viewModelScope.launch(context, start, block)
 
-@OptIn(DelicateCoroutinesApi::class)
-inline fun <T : Any> asyncR(crossinline callback: () -> T): Response<T> =
-    GlobalScope.async {
+inline fun <T : Any> CoroutineScope.asyncR(crossinline callback: () -> T): Response<T> =
+    this.async(Dispatchers.IO) {
         Result.of {
             callback.invoke()
         }

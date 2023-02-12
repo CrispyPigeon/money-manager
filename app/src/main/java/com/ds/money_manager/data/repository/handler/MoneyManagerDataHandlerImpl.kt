@@ -98,4 +98,48 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
+
+    override fun postWallet(name: String, currencyId: Int): WalletResponse {
+        val result = moneyManagerApi.postWallet(WalletRequest(name, currencyId)).execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
+    override fun putWallet(walletId: Int, name: String): WalletUpdateResponse {
+        val result = moneyManagerApi.putWallet(WalletUpdateRequest(walletId, name)).execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
+    override fun deleteWallet(walletId: Int) {
+        val result = moneyManagerApi.deleteWallet(walletId).execute()
+        if (result.isSuccessful)
+            return
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
+    override fun getWallet(walletId: Int): WalletResponse {
+        val result = moneyManagerApi.getWallet(walletId).execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
 }

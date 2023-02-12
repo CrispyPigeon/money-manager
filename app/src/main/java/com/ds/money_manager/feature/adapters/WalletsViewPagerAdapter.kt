@@ -21,9 +21,9 @@ class WalletsViewPagerAdapter : BaseRecyclerViewAdapter<BaseViewHolder, WalletIt
     inner class WalletDetailsViewHolder(val binding: ItemWalletVpBinding) :
         BaseViewHolder(binding.root) {
         init {
-            //binding.root.setOnClickListener {
-            //    onClickListener(items[adapterPosition], adapterPosition)
-            //}
+            binding.root.setOnClickListener {
+                onClickListener(items[adapterPosition], adapterPosition)
+            }
         }
 
         fun bind(item: WalletDetailsResponse) {
@@ -39,9 +39,9 @@ class WalletsViewPagerAdapter : BaseRecyclerViewAdapter<BaseViewHolder, WalletIt
     inner class WalletEmptyViewHolder(val binding: ItemWalletEmptyVpBinding) :
         BaseViewHolder(binding.root) {
         init {
-            //binding.root.setOnClickListener {
-            //    onClickListener(items[adapterPosition], adapterPosition)
-            //}
+            binding.root.setOnClickListener {
+                onClickListener(items[adapterPosition], adapterPosition)
+            }
         }
     }
 

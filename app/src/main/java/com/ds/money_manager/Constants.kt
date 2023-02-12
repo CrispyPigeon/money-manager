@@ -1,6 +1,7 @@
 package com.ds.money_manager
 
 object Constants {
+    val NEW_WALLET_ID = -1
     val CURRENCY_SCALE = 2
 
     val DATE_FORMAT="HH:mm dd-MM-yyyy"

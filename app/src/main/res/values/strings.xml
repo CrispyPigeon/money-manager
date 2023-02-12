@@ -29,5 +29,6 @@
     <string name="transactions">Transactions</string>
     <string name="add_wallet">Add Wallet</string>
     <string name="button_continue">Continue</string>
+    <string name="button_delete">Delete</string>
     <string name="enter_wallet_name">Enter wallet name</string>
 </resources>

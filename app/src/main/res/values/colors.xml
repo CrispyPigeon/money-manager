@@ -15,6 +15,8 @@
     <color name="button_disabled_text">#9596B7</color>
     <color name="button_active">#3FDEAE</color>
     <color name="button_active_text">#FFFFFF</color>
+    <color name="button_remove">#FF5F7B</color>
+    <color name="button_remove_text">#FFFFFF</color>
     <color name="new_wallet">#F1F5FF</color>
     <color name="wallet_gradient_start">#564FBF</color>
     <color name="wallet_gradient_end">#8983F6</color>

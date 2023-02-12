@@ -111,13 +111,21 @@
 
     <!-- Button styles -->
 
-    <style name="ButtonAccept">
+    <style name="Button">
         <item name="fontFamily">@font/lato_600</item>
         <item name="android:textSize">@dimen/textsize_standard</item>
         <item name="android:textColor">@color/selector_text_color</item>
-        <item name="android:background">@drawable/selector_button_background</item>
+        <item name="android:background">@drawable/selector_button_active_background</item>
         <item name="android:outlineProvider">none</item>
         <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Button.Accept">
+        <item name="android:background">@drawable/selector_button_active_background</item>
+    </style>
+
+    <style name="Button.Remove">
+        <item name="android:background">@drawable/selector_button_remove_background</item>
     </style>
 
 </resources>

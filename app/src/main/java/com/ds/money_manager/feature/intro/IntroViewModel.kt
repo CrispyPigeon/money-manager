@@ -1,6 +1,7 @@
 package com.ds.money_manager.feature.intro
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ds.money_manager.base.helpers.awaitFold
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
@@ -30,7 +31,7 @@ class IntroViewModel @Inject constructor(
             if (!isAuthorizedUseCase())
                 signInErrorEvent.call()
 
-            checkTokenUseCase().awaitFoldApi(
+            checkTokenUseCase(viewModelScope).awaitFoldApi(
                 {
                     signInSuccessEvent.call()
                 },
@@ -49,7 +50,7 @@ class IntroViewModel @Inject constructor(
 
     private suspend fun auth() {
         val signInData = getAuthDataUseCase()
-        signInRequestUseCase(signInData.first, signInData.second).awaitFold(
+        signInRequestUseCase(viewModelScope, signInData.first, signInData.second).awaitFold(
             {
                 saveAuthDataUseCase(signInData.first, signInData.second, it.token)
                 signInSuccessEvent.call()
