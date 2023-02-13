@@ -3,6 +3,9 @@ package com.ds.money_manager.feature.main.fragment
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +28,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>() {
+
+    private val fabRotateStartAnimation: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.anim_rotate_start) }
+    private val fabRotateCloseAnimation: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.anim_rotate_close) }
+    private val fabShowAnimation: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.anim_fab_show) }
+    private val fabHideAnimation: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.anim_fab_hide) }
+
+    private var isFabPressed = false
 
     private var walletsAdapter: WalletsViewPagerAdapter? = null
     private var statisticItemsAdapter: StatisticItemsAdapter? = null
@@ -52,6 +62,18 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
             binding.swipeRefreshLayout.isRefreshing = false
         }
 
+        binding.floatingActionButtonAdd.setOnClickListener {
+            isFabPressed = !isFabPressed
+            configureFloatViews(isFabPressed)
+        }
+
+        binding.textViewAddIncome.setOnClickListener {
+            Toast.makeText(requireContext(), "textViewAddIncome clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.textViewAddCost.setOnClickListener {
+            Toast.makeText(requireContext(), "textViewAddCost clicked", Toast.LENGTH_SHORT).show()
+        }
 
         binding.viewPagerWallets.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -97,6 +119,23 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         viewModel.logOutSuccessEvent.observe(viewLifecycleOwner) {
             navController.navigate(R.id.action_mainFragment_to_signInFragment)
         }
+    }
+
+    private fun configureFloatViews(fabPressed: Boolean) {
+        if (fabPressed) {
+            binding.textViewAddIncome.visibility = View.VISIBLE
+            binding.textViewAddIncome.startAnimation(fabShowAnimation)
+            binding.textViewAddCost.visibility = View.VISIBLE
+            binding.textViewAddCost.startAnimation(fabShowAnimation)
+            binding.floatingActionButtonAdd.startAnimation(fabRotateStartAnimation)
+        } else {
+            binding.textViewAddIncome.visibility = View.GONE
+            binding.textViewAddIncome.startAnimation(fabHideAnimation)
+            binding.textViewAddCost.visibility = View.GONE
+            binding.textViewAddCost.startAnimation(fabHideAnimation)
+            binding.floatingActionButtonAdd.startAnimation(fabRotateCloseAnimation)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

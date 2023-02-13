@@ -66,6 +66,13 @@
         <item name="android:textSize">@dimen/textsize_statistic</item>
     </style>
 
+    <style name="TextView.Header.Float">
+        <item name="android:textSize">@dimen/textsize_standard</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:padding">@dimen/margin_general</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="TextView.Hint">
         <item name="android:textSize">@dimen/textsize_standard</item>
         <item name="android:textColor">@color/field_text_highlight</item>

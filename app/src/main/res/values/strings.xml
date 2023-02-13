@@ -32,4 +32,6 @@
     <string name="button_continue">Continue</string>
     <string name="button_delete">Delete</string>
     <string name="enter_wallet_name">Enter wallet name</string>
+    <string name="add_cost">Add Cost</string>
+    <string name="add_income">Add Income</string>
 </resources>

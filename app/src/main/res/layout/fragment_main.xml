@@ -2,10 +2,10 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:id="@+id/swipe_refresh_layout">
+    android:background="@color/background">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
@@ -252,13 +252,40 @@
 
         </androidx.core.widget.NestedScrollView>
 
+        <TextView
+            android:id="@+id/text_view_add_income"
+            style="@style/TextView.Header.Float"
+            android:layout_width="@dimen/text_view_fab_width"
+            android:layout_height="@dimen/fab_size"
+            android:background="@drawable/background_text_view_add_income"
+            android:text="@string/add_income"
+            android:translationY="@dimen/fab_y_translation_second"
+            android:visibility="gone"
+            app:layout_anchor="@id/text_view_add_cost"
+            app:layout_anchorGravity="top|end" />
+
+        <TextView
+            android:id="@+id/text_view_add_cost"
+            style="@style/TextView.Header.Float"
+            android:layout_width="@dimen/text_view_fab_width"
+            android:layout_height="@dimen/fab_size"
+            android:background="@drawable/background_text_view_add_cost"
+            android:text="@string/add_cost"
+            android:translationY="@dimen/fab_y_translation_first"
+            android:visibility="gone"
+            app:layout_anchor="@id/floating_action_button_add"
+            app:layout_anchorGravity="top|end" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/margin_general"
             android:contentDescription="@string/plus"
+            android:elevation="0dp"
             android:src="@drawable/ic_fab_plus"
+            app:elevation="0dp"
             app:maxImageSize="@dimen/fab_size" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
