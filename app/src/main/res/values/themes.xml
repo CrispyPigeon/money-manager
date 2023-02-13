@@ -44,6 +44,8 @@
         <item name="android:textColor">@color/field_text</item>
     </style>
 
+
+
     <style name="TextView.Header">
         <item name="fontFamily">@font/lato_600</item>
         <item name="android:textSize">@dimen/textsize_header_1</item>
@@ -91,6 +93,10 @@
     <style name="TextView.WalletTitle">
         <item name="android:textSize">@dimen/textsize_wallet_title</item>
         <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="TextView.Date">
+        <item name="android:textSize">@dimen/textsize_date</item>
     </style>
 
     <style name="TextView.StatisticItemPercentage">

@@ -7,6 +7,7 @@ import com.ds.money_manager.base.presentation.adapters.BaseRecyclerViewAdapter
 import com.ds.money_manager.base.presentation.viewholders.BaseViewHolder
 import com.ds.money_manager.data.model.api.TransactionResponse
 import com.ds.money_manager.databinding.ItemCommonBinding
+import com.ds.money_manager.extensions.loadPicture
 import com.ds.money_manager.utils.CurrencyUtils
 import com.ds.money_manager.utils.ImageUtils
 import com.ds.money_manager.utils.StringUtils.toDateString
@@ -27,7 +28,7 @@ class TransactionsAdapter(val context: Context) :
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
         val item = items[position]
         with(holder.binding) {
-            ImageUtils.loadPicture(context, item.typeImage, imageViewIcon)
+            imageViewIcon.loadPicture(context, item.typeImage)
             textViewName.text = item.name
             textViewDescription.text = item.dateTime.toDateString()
             textViewAmount.text = CurrencyUtils.showAmount(item.amount)

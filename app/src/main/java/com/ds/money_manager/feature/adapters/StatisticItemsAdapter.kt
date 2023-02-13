@@ -7,8 +7,8 @@ import com.ds.money_manager.base.presentation.adapters.BaseRecyclerViewAdapter
 import com.ds.money_manager.base.presentation.viewholders.BaseViewHolder
 import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.databinding.ItemCommonBinding
+import com.ds.money_manager.extensions.loadPicture
 import com.ds.money_manager.utils.CurrencyUtils
-import com.ds.money_manager.utils.ImageUtils
 
 class StatisticItemsAdapter(val context: Context) :
     BaseRecyclerViewAdapter<StatisticItemsAdapter.StatisticItemViewHolder, StatisticItemResponse>() {
@@ -26,7 +26,7 @@ class StatisticItemsAdapter(val context: Context) :
     override fun onBindViewHolder(holder: StatisticItemViewHolder, position: Int) {
         val item = items[position]
         with(holder.binding) {
-            ImageUtils.loadPicture(context, item.image, imageViewIcon)
+            imageViewIcon.loadPicture(context, item.image)
             textViewName.text = item.name
             textViewDescription.text = item.percent
             textViewAmount.text = CurrencyUtils.showAmount(item.amount)

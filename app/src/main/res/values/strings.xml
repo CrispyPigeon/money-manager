@@ -28,10 +28,14 @@
     <string name="total_statistics">Total Statistic</string>
     <string name="expenses">Expenses</string>
     <string name="transactions">Transactions</string>
-    <string name="add_wallet">Add Wallet</string>
+    <string name="wallet">Wallet</string>
     <string name="button_continue">Continue</string>
     <string name="button_delete">Delete</string>
-    <string name="enter_wallet_name">Enter wallet name</string>
     <string name="add_cost">Add Cost</string>
     <string name="add_income">Add Income</string>
+    <string name="income">Income</string>
+    <string name="enter_name">Name</string>
+    <string name="enter_amount">Amount</string>
+    <string name="today_date">Today\'s date</string>
+    <string name="date_template">DD/MM/YYYY</string>
 </resources>

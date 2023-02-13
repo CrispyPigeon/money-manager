@@ -68,7 +68,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         binding.textViewAddIncome.setOnClickListener {
-            Toast.makeText(requireContext(), "textViewAddIncome clicked", Toast.LENGTH_SHORT).show()
+            navController.navigate(R.id.action_mainFragment_to_incomeFragment)
         }
 
         binding.textViewAddCost.setOnClickListener {

@@ -24,14 +24,14 @@
 
         <TextView
             android:id="@+id/text_view_toolbar_title"
-            android:text="@string/add_wallet"
             style="@style/TextView.Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/wallet"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_general"
         android:layout_marginTop="@dimen/margin_entry_title"
-        android:hint="@string/enter_wallet_name"
+        android:hint="@string/enter_name"
         android:imeOptions="actionNext"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"

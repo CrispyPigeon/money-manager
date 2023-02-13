@@ -8,6 +8,6 @@ fun ImageView.loadPicture(context: Context, url: String?) {
     ImageUtils.loadPicture(context, url, this)
 }
 
-fun ImageView.loadLocalPicture(context: Context, imageId: Int) {
-    ImageUtils.loadLocalPicture(context, imageId, this)
+fun ImageView.loadLocalPicture(context: Context, imageId: Int, size: Int) {
+    ImageUtils.loadLocalPicture(context, imageId, this, size)
 }
