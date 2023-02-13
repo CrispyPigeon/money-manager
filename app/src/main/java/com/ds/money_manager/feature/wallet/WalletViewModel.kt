@@ -12,6 +12,7 @@ import com.ds.money_manager.usecases.SaveWalletUseCase
 import com.ds.money_manager.usecases.UpdateWalletUseCase
 import com.ds.money_manager.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +28,8 @@ class WalletViewModel @Inject constructor(
 
     fun getWalletData(walletId: Int) {
         launchUI {
+            changeLoadingState(true)
+            delay(1000)
             getWalletUseCase(viewModelScope,walletId).awaitFoldApi(
                 {
                     wallet.value = it
@@ -38,11 +41,14 @@ class WalletViewModel @Inject constructor(
                     showError("", it.message.toString())
                 }
             )
+            changeLoadingState(false)
         }
     }
 
     fun saveWallet(name: String) {
         launchUI {
+            changeLoadingState(true)
+            delay(1000)
             saveWalletUseCase(viewModelScope,name).awaitFoldApi(
                 {
                     successEvent.call()
@@ -54,11 +60,14 @@ class WalletViewModel @Inject constructor(
                     showError("", it.message.toString())
                 }
             )
+            changeLoadingState(false)
         }
     }
 
     fun updateWallet(walletId: Int, name: String) {
         launchUI {
+            changeLoadingState(true)
+            delay(1000)
             updateWalletUseCase(viewModelScope,walletId, name).awaitFoldApi(
                 {
                     successEvent.call()
@@ -70,11 +79,14 @@ class WalletViewModel @Inject constructor(
                     showError("", it.message.toString())
                 }
             )
+            changeLoadingState(false)
         }
     }
 
     fun removeWallet(walletId: Int) {
         launchUI {
+            changeLoadingState(true)
+            delay(1000)
             removeWalletUseCase(viewModelScope,walletId).awaitFoldApi(
                 {
                     successEvent.call()
@@ -86,6 +98,7 @@ class WalletViewModel @Inject constructor(
                     showError("", it.message.toString())
                 }
             )
+            changeLoadingState(false)
         }
     }
 }

@@ -31,13 +31,6 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
     private var transactionsAdapter: TransactionsAdapter? = null
 
     override fun initViews() {
-        super.initViews()
-
-        loadingDialog?.setText(
-            getString(R.string.dialog_loading_title),
-            getString(R.string.dialog_loading_data_description)
-        )
-
         configureAppBar()
         configureSwipeRefreshLayout()
         configureWalletsRv()

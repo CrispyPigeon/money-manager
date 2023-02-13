@@ -15,12 +15,6 @@ class SignUpFragment : DialogsSupportFragment<FragmentSignUpBinding, SignUpViewM
     private var inputTypeForRepeatPasswordClicked = false
 
     override fun initViews() {
-        super.initViews()
-
-        loadingDialog.setText(
-            getString(R.string.dialog_loading_title),
-            getString(R.string.dialog_loading_sign_in_description)
-        )
         binding.editTextPassword.editText.imeOptions = EditorInfo.IME_ACTION_NEXT
         binding.editTextPassword.editText.nextFocusDownId = binding.editTextRepeatPassword.id
         binding.editTextRepeatPassword.editText.hint = getString(R.string.repeat_password)

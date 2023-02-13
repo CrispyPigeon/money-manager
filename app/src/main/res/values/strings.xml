@@ -3,6 +3,7 @@
     <string name="shared_preferences_key">money-manager-pref</string>
 
     <string name="dialog_loading_title">Loading</string>
+    <string name="dialog_loading_description">Your data is processing</string>
     <string name="dialog_loading_sign_in_description">Authorization process</string>
     <string name="dialog_loading_data_description">Your data is updating</string>
     <string name="dialog_error_title">Error</string>

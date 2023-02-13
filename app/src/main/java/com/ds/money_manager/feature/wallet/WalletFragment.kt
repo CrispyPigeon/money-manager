@@ -15,13 +15,6 @@ class WalletFragment : DialogsSupportFragment<FragmentWalletBinding, WalletViewM
     val args: WalletFragmentArgs by navArgs()
 
     override fun initViews() {
-        super.initViews()
-
-        loadingDialog.setText(
-            getString(R.string.dialog_loading_title),
-            getString(R.string.dialog_loading_data_description)
-        )
-
         if (args.walletId != NEW_WALLET_ID) {
             configureDeleteButton()
             viewModel.getWalletData(args.walletId)

@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.ds.money_manager.R
+import com.ds.money_manager.base.presentation.dialogs.SizeFixedDialogFragment
 import com.ds.money_manager.base.presentation.dialogs.StandardDialogFragment
 
 
-class LoadingDialog : StandardDialogFragment() {
+class LoadingDialog : SizeFixedDialogFragment() {
 
     private lateinit var titleTextView: TextView
     private lateinit var descriptionTextView: TextView
@@ -30,8 +31,8 @@ class LoadingDialog : StandardDialogFragment() {
 
     private fun initViews() {
         titleTextView = requireView().findViewById(R.id.text_view_title)
-        titleTextView.text = title
+        titleTextView.text = requireContext().getString(R.string.dialog_loading_title)
         descriptionTextView = requireView().findViewById(R.id.text_view_description)
-        descriptionTextView.text = description
+        descriptionTextView.text = requireContext().getString(R.string.dialog_loading_description)
     }
 }

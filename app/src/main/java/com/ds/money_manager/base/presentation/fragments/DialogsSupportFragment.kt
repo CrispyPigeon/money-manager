@@ -7,27 +7,27 @@ import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
 import com.ds.money_manager.feature.views.dialogs.AlertDialog
 import com.ds.money_manager.feature.views.dialogs.LoadingDialog
 
-abstract class DialogsSupportFragment<VB : ViewBinding, VM : DialogsSupportViewModel> : BaseFragment<VB,VM> () {
+abstract class DialogsSupportFragment<VB : ViewBinding, VM : DialogsSupportViewModel> :
+    BaseFragment<VB, VM>() {
 
-    lateinit var loadingDialog: LoadingDialog
+    var loadingDialog: LoadingDialog? = null
     lateinit var errorDialog: AlertDialog
 
-    override fun initViews() {
-        loadingDialog = LoadingDialog()
-        errorDialog = AlertDialog()
-    }
 
     override fun initListeners() {
         viewModel.loading.observe(viewLifecycleOwner) {
-            if (it)
-                loadingDialog.show(requireActivity().supportFragmentManager, LOADING_DIALOG_TAG)
-            else
-                loadingDialog.dismiss()
+            if (it) {
+                loadingDialog = LoadingDialog()
+                loadingDialog!!.show(childFragmentManager, LOADING_DIALOG_TAG)
+            } else {
+                loadingDialog?.dismiss()
+                loadingDialog = null
+            }
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
             errorDialog.setText(it.first, it.second)
-            errorDialog.show(requireActivity().supportFragmentManager, ERROR_DIALOG_TAG)
+            errorDialog.show(childFragmentManager, ERROR_DIALOG_TAG)
         }
 
         viewModel.errorWithIds.observe(viewLifecycleOwner) {
@@ -35,7 +35,7 @@ abstract class DialogsSupportFragment<VB : ViewBinding, VM : DialogsSupportViewM
                 getString(it.first),
                 getString(it.second)
             )
-            errorDialog.show(requireActivity().supportFragmentManager, ERROR_DIALOG_TAG)
+            errorDialog.show(childFragmentManager, ERROR_DIALOG_TAG)
         }
     }
 }

@@ -23,8 +23,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     private val classVB = type.actualTypeArguments[0] as Class<VB>
     private val classVM = type.actualTypeArguments[1] as Class<VM>
 
-    private var loadingDialog: LoadingDialog? = null
-
     private val inflateMethod = classVB.getMethod(
         "inflate",
         LayoutInflater::class.java,

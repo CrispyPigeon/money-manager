@@ -11,14 +11,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewModel>() {
     private var inputTypeClicked = false
 
-    override fun initViews() {
-        super.initViews()
 
-        loadingDialog.setText(
-            getString(R.string.dialog_loading_title),
-            getString(R.string.dialog_loading_sign_in_description)
-        )
-    }
+    override fun initViews() {}
 
     override fun initListeners() {
         super.initListeners()
