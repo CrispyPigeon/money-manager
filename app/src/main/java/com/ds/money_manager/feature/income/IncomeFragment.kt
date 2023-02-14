@@ -1,10 +1,16 @@
 package com.ds.money_manager.feature.income
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
+import android.text.InputType
+import android.widget.EditText
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentIncomeBinding
 import com.ds.money_manager.extensions.loadLocalPicture
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+
 
 @AndroidEntryPoint
 class IncomeFragment : DialogsSupportFragment<FragmentIncomeBinding, IncomeViewModel>() {
@@ -17,6 +23,7 @@ class IncomeFragment : DialogsSupportFragment<FragmentIncomeBinding, IncomeViewM
             R.drawable.ic_calendar,
             getCalendarIconSize()
         )
+        binding.editTextDate.editText.inputType = InputType.TYPE_CLASS_DATETIME
         binding.editTextDate.editText.setHint(R.string.date_template)
     }
 
@@ -29,6 +36,24 @@ class IncomeFragment : DialogsSupportFragment<FragmentIncomeBinding, IncomeViewM
 
         binding.imageViewBackButton.setOnClickListener {
             navController.navigateUp()
+        }
+
+        binding.editTextDate.imageView.setOnClickListener {
+            val c: Calendar = Calendar.getInstance()
+            val mYear = c.get(Calendar.YEAR)
+            val mMonth = c.get(Calendar.MONTH)
+            val mDay = c.get(Calendar.DAY_OF_MONTH)
+
+
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                { view, year, monthOfYear, dayOfMonth ->
+                    binding.editTextDate.editText.setText(
+                        dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+                    )
+                }, mYear, mMonth, mDay
+            )
+            datePickerDialog.show()
         }
     }
 }
