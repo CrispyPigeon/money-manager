@@ -68,7 +68,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         binding.textViewAddIncome.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_incomeFragment)
+            navController.navigate(R.id.action_mainFragment_to_chooseWalletFragment)
         }
 
         binding.textViewAddCost.setOnClickListener {
