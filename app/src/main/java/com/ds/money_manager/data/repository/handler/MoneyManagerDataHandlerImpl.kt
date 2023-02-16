@@ -142,4 +142,50 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
+
+    override fun postIncome(
+        walletId: Int,
+        name: String,
+        sum: BigDecimal,
+        date: String
+    ): IncomeResponse {
+        val result = moneyManagerApi.postIncome(IncomeRequest(walletId, name, sum, date)).execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
+    override fun putIncome(
+        incomeId: Int,
+        walletId: Int,
+        name: String,
+        sum: BigDecimal,
+        date: String
+    ): IncomeResponse {
+        val result =
+            moneyManagerApi.putIncome(IncomeUpdateRequest(incomeId, walletId, name, sum, date))
+                .execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
+    override fun deleteIncome(incomeId: Int) {
+        val result = moneyManagerApi.deleteIncome(incomeId).execute()
+        if (result.isSuccessful)
+            return
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
 }

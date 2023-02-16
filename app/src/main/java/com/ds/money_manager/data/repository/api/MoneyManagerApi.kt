@@ -54,4 +54,13 @@ interface MoneyManagerApi {
     fun getLastTransactions(
         @Query("limit") limit: Int = 20
     ): Call<List<TransactionResponse>>
+
+    @POST("income/add")
+    fun postIncome(@Body data: IncomeRequest): Call<IncomeResponse>
+
+    @PUT("income/update")
+    fun putIncome(@Body data: IncomeUpdateRequest): Call<IncomeResponse>
+
+    @DELETE("income/delete")
+    fun deleteIncome(@Query("incomeId") incomeId: Int): Call<Void>
 }

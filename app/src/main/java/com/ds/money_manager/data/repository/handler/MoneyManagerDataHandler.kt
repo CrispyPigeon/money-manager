@@ -2,7 +2,6 @@ package com.ds.money_manager.data.repository.handler
 
 import com.ds.money_manager.data.model.api.*
 import retrofit2.Call
-import retrofit2.http.Query
 import java.math.BigDecimal
 import java.time.LocalDate
 
@@ -18,4 +17,13 @@ interface MoneyManagerDataHandler {
     fun putWallet(walletId: Int, name: String): WalletUpdateResponse
     fun deleteWallet(walletId: Int)
     fun getWallet(walletId: Int): WalletResponse
+    fun postIncome(walletId: Int, name: String, sum: BigDecimal, date: String): IncomeResponse
+    fun putIncome(
+        incomeId: Int,
+        walletId: Int,
+        name: String,
+        sum: BigDecimal,
+        date: String
+    ): IncomeResponse
+    fun deleteIncome(incomeId: Int)
 }
