@@ -1,15 +1,18 @@
 package com.ds.money_manager.feature.income
 
 import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.text.InputType
-import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.navArgs
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentIncomeBinding
 import com.ds.money_manager.extensions.loadLocalPicture
+import com.ds.money_manager.extensions.toFormattedString
+import com.ds.money_manager.utils.SizeConvertersUtils
 import dagger.hilt.android.AndroidEntryPoint
+import java.math.BigDecimal
+import java.time.LocalDate
 import java.util.*
 
 
@@ -17,12 +20,15 @@ import java.util.*
 class IncomeFragment : DialogsSupportFragment<FragmentIncomeBinding, IncomeViewModel>() {
     private var isTodayDateSelected = false
     private val CALENDAR_DP_SIZE = 22
+    private val DONE_DP_SIZE = 28
+
+    val args: IncomeFragmentArgs by navArgs()
 
     override fun initViews() {
         binding.editTextDate.imageView.loadLocalPicture(
             requireContext(),
             R.drawable.ic_calendar,
-            getCalendarIconSize()
+            SizeConvertersUtils.toPx(requireContext(), CALENDAR_DP_SIZE)
         )
         binding.editTextDate.editText.isFocusable = false
         binding.editTextDate.editText.inputType = InputType.TYPE_CLASS_DATETIME
@@ -60,20 +66,47 @@ class IncomeFragment : DialogsSupportFragment<FragmentIncomeBinding, IncomeViewM
             isTodayDateSelected = !isTodayDateSelected
             configureDate(isTodayDateSelected)
         }
+
+        binding.buttonContinue.setOnClickListener {
+            viewModel.saveIncome(
+                args.walletId,
+                binding.editTextName.text.toString(),
+                BigDecimal(binding.editTextAmount.text.toString())
+            )
+        }
+
+        viewModel.successEvent.observe(viewLifecycleOwner) {
+            navController.navigate(R.id.action_incomeFragment_to_mainFragment)
+        }
+
+        viewModel.localeDate.observe(viewLifecycleOwner) {
+            binding.editTextDate.editText.setText(
+                it.toFormattedString()
+            )
+        }
     }
 
     private fun configureDate(todayDateSelected: Boolean) {
-        if (todayDateSelected)
-        {
-
-        }
-        else
-        {
-
+        if (todayDateSelected) {
+            viewModel.localeDate.value = LocalDate.now()
+            binding.imageViewSelector.loadLocalPicture(
+                requireContext(),
+                R.drawable.ic_done,
+                SizeConvertersUtils.toPx(requireContext(), DONE_DP_SIZE)
+            )
+        } else {
+            binding.imageViewSelector.loadLocalPicture(
+                requireContext(),
+                R.drawable.ic_not_done,
+                SizeConvertersUtils.toPx(requireContext(), DONE_DP_SIZE)
+            )
         }
     }
 
-    fun showCalendar(){
+    fun showCalendar() {
+        if (isTodayDateSelected)
+            return
+
         val c: Calendar = Calendar.getInstance()
         val mYear = c.get(Calendar.YEAR)
         val mMonth = c.get(Calendar.MONTH)
@@ -83,19 +116,15 @@ class IncomeFragment : DialogsSupportFragment<FragmentIncomeBinding, IncomeViewM
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { view, year, monthOfYear, dayOfMonth ->
-//                binding.editTextDate.editText.setText(
-//                    dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
-//                )
+                viewModel.localeDate.value = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
+
             }, mYear, mMonth, mDay
         )
         datePickerDialog.show()
     }
 
-    private fun getCalendarIconSize(): Int {
-        return (CALENDAR_DP_SIZE * requireContext().resources.displayMetrics.density).toInt()
-    }
-
     private fun configureContinueButton() {
-        binding.buttonContinue.isEnabled = binding.editTextName.text.length > 2 && binding.editTextName.text.isNotEmpty() && binding.editTextDate.editText.text.length == 9
+        binding.buttonContinue.isEnabled =
+            binding.editTextName.text.length > 2 && binding.editTextAmount.text.isNotEmpty() && binding.editTextDate.editText.text.length > 6
     }
 }
