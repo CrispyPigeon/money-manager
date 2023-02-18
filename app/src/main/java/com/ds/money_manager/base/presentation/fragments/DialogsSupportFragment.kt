@@ -11,7 +11,7 @@ abstract class DialogsSupportFragment<VB : ViewBinding, VM : DialogsSupportViewM
     BaseFragment<VB, VM>() {
 
     var loadingDialog: LoadingDialog? = null
-    lateinit var errorDialog: AlertDialog
+    var errorDialog: AlertDialog = AlertDialog()
 
 
     override fun initListeners() {

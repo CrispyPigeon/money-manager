@@ -1,7 +1,6 @@
 package com.ds.money_manager.data.repository.handler
 
 import com.ds.money_manager.data.model.api.*
-import retrofit2.Call
 import java.math.BigDecimal
 import java.time.LocalDate
 
@@ -25,5 +24,7 @@ interface MoneyManagerDataHandler {
         sum: BigDecimal,
         date: String
     ): IncomeResponse
+
     fun deleteIncome(incomeId: Int)
+    fun getCostTypes(): List<CostTypeResponse>
 }

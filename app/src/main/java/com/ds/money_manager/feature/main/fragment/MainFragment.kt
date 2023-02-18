@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
 import app.futured.donut.DonutSection
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
+import com.ds.money_manager.data.model.TransactionType
 import com.ds.money_manager.data.model.api.StatisticItemResponse
 import com.ds.money_manager.data.model.api.WalletDetailsResponse
 import com.ds.money_manager.databinding.FragmentMainBinding
@@ -68,11 +69,15 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         binding.textViewAddIncome.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_chooseWalletFragment)
+            val action =
+                MainFragmentDirections.actionMainFragmentToChooseWalletFragment(TransactionType.Income)
+            navController.navigate(action)
         }
 
         binding.textViewAddCost.setOnClickListener {
-            Toast.makeText(requireContext(), "textViewAddCost clicked", Toast.LENGTH_SHORT).show()
+            val action =
+                MainFragmentDirections.actionMainFragmentToChooseWalletFragment(TransactionType.Cost)
+            navController.navigate(action)
         }
 
         binding.viewPagerWallets.registerOnPageChangeCallback(object :

@@ -104,5 +104,23 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_chooseWalletFragment_to_chooseCostTypeFragment"
+            app:destination="@id/chooseCostTypeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="transactionType"
+            app:argType="com.ds.money_manager.data.model.TransactionType" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseCostTypeFragment"
+        android:name="com.ds.money_manager.feature.costtype.ChooseCostTypeFragment"
+        android:label="ChooseCostTypeFragment" >
+        <argument
+            android:name="walletId"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -188,4 +188,15 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
                 ?: throw Exception(UNKNOWN_ERROR)
         }
     }
+
+    override fun getCostTypes(): List<CostTypeResponse> {
+        val result = moneyManagerApi.getCostTypes().execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
 }

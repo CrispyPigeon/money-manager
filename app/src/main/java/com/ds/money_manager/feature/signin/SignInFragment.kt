@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewModel>() {
     private var inputTypeClicked = false
 
-
     override fun initViews() {}
 
     override fun initListeners() {
