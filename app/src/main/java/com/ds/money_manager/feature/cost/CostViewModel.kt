@@ -11,7 +11,7 @@ import com.ds.money_manager.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import java.math.BigDecimal
-import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,7 +20,7 @@ class CostViewModel @Inject constructor(
 ) : DialogsSupportViewModel() {
 
     val successEvent = SingleLiveEvent<Any>()
-    val localeDate = MutableLiveData<LocalDate>()
+    val localeDate = MutableLiveData<LocalDateTime>()
 
     fun saveCost(
         name: String,

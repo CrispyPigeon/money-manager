@@ -8,7 +8,7 @@ import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
 import com.ds.money_manager.extensions.loadLocalPicture
 import com.ds.money_manager.utils.SizeConvertersUtils
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 abstract class BaseTransactionFragment<VB : ViewBinding, VM : DialogsSupportViewModel> :
@@ -17,7 +17,7 @@ abstract class BaseTransactionFragment<VB : ViewBinding, VM : DialogsSupportView
     protected val CALENDAR_DP_SIZE = 22
     protected val DONE_DP_SIZE = 28
 
-    protected fun showCalendar(date: MutableLiveData<LocalDate>) {
+    protected fun showCalendar(date: MutableLiveData<LocalDateTime>) {
         if (isTodayDateSelected)
             return
 
@@ -30,16 +30,24 @@ abstract class BaseTransactionFragment<VB : ViewBinding, VM : DialogsSupportView
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { view, year, monthOfYear, dayOfMonth ->
-                date.value = (LocalDate.of(year, monthOfYear + 1, dayOfMonth))
+                date.value = LocalDateTime.now()
+                    .withYear(year)
+                    .withMonth(monthOfYear + 1)
+                    .withDayOfMonth(dayOfMonth)
 
             }, mYear, mMonth, mDay
         )
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis() - 1000
         datePickerDialog.show()
     }
 
-   protected fun configureDate(todayDateSelected: Boolean, imageView: ImageView, date: MutableLiveData<LocalDate>) {
+    protected fun configureDate(
+        todayDateSelected: Boolean,
+        imageView: ImageView,
+        date: MutableLiveData<LocalDateTime>
+    ) {
         if (todayDateSelected) {
-            date.value = LocalDate.now()
+            date.value = LocalDateTime.now()
             imageView.loadLocalPicture(
                 requireContext(),
                 R.drawable.ic_done,

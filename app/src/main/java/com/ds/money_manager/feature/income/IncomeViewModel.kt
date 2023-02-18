@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import java.math.BigDecimal
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,7 +21,7 @@ class IncomeViewModel @Inject constructor(
 ) : DialogsSupportViewModel() {
 
     val successEvent = SingleLiveEvent<Any>()
-    val localeDate = MutableLiveData<LocalDate>()
+    val localeDate = MutableLiveData<LocalDateTime>()
 
     fun saveIncome(walletId: Int, name: String, amount: BigDecimal) {
         launchUI {
