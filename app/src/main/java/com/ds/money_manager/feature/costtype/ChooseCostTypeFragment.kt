@@ -2,10 +2,10 @@ package com.ds.money_manager.feature.costtype
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentChooseCostTypeBinding
-import com.ds.money_manager.databinding.FragmentChooseWalletBinding
 import com.ds.money_manager.feature.adapters.CostTypesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ChooseCostTypeFragment :
     DialogsSupportFragment<FragmentChooseCostTypeBinding, ChooseCostTypeViewModel>() {
 
+    val args: ChooseCostTypeFragmentArgs by navArgs()
     var costTypesAdapter: CostTypesAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,6 +31,15 @@ class ChooseCostTypeFragment :
 
         binding.imageViewBackButton.setOnClickListener {
             navController.navigateUp()
+        }
+
+        costTypesAdapter!!.onClickListener = { item, position ->
+            val action =
+                ChooseCostTypeFragmentDirections.actionChooseCostTypeFragmentToCostFragment(
+                    args.walletId,
+                    item.costTypeId
+                )
+            navController.navigate(action)
         }
 
         viewModel.costTypes.observe(viewLifecycleOwner) {

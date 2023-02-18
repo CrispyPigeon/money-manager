@@ -1,11 +1,11 @@
-package com.ds.money_manager.feature.income
+package com.ds.money_manager.feature.cost
 
 import android.text.InputType
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.BaseTransactionFragment
-import com.ds.money_manager.databinding.FragmentIncomeBinding
+import com.ds.money_manager.databinding.FragmentCostBinding
 import com.ds.money_manager.extensions.loadLocalPicture
 import com.ds.money_manager.extensions.toFormattedString
 import com.ds.money_manager.utils.SizeConvertersUtils
@@ -13,9 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.math.BigDecimal
 
 @AndroidEntryPoint
-class IncomeFragment : BaseTransactionFragment<FragmentIncomeBinding, IncomeViewModel>() {
+class CostFragment : BaseTransactionFragment<FragmentCostBinding, CostViewModel>() {
 
-    val args: IncomeFragmentArgs by navArgs()
+    val args: CostFragmentArgs by navArgs()
 
     override fun initViews() {
         binding.editTextDate.imageView.loadLocalPicture(
@@ -61,15 +61,16 @@ class IncomeFragment : BaseTransactionFragment<FragmentIncomeBinding, IncomeView
         }
 
         binding.buttonContinue.setOnClickListener {
-            viewModel.saveIncome(
-                args.walletId,
+            viewModel.saveCost(
                 binding.editTextName.text.toString(),
-                BigDecimal(binding.editTextAmount.text.toString())
+                BigDecimal(binding.editTextAmount.text.toString()),
+                args.walletId,
+                args.costTypeId
             )
         }
 
         viewModel.successEvent.observe(viewLifecycleOwner) {
-            navController.navigate(R.id.action_incomeFragment_to_mainFragment)
+            navController.navigate(R.id.action_costFragment_to_mainFragment)
         }
 
         viewModel.localeDate.observe(viewLifecycleOwner) {

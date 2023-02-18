@@ -27,4 +27,20 @@ interface MoneyManagerDataHandler {
 
     fun deleteIncome(incomeId: Int)
     fun getCostTypes(): List<CostTypeResponse>
+    fun postCost(
+        name: String,
+        sum: BigDecimal,
+        date: String,
+        walledId: Int,
+        costTypeId: Int
+    ): CostResponse
+    fun putCost(
+        costId: Int,
+        name: String,
+        sum: BigDecimal,
+        date: String,
+        walletId: Int,
+        costTypeId: Int
+    ): CostResponse
+    fun deleteCost(costId: Int)
 }

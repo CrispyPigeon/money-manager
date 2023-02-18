@@ -52,7 +52,7 @@ interface MoneyManagerApi {
 
     @GET("statistic/transactions/last")
     fun getLastTransactions(
-        @Query("limit") limit: Int = 20
+        @Query("limit") limit: Int = 5
     ): Call<List<TransactionResponse>>
 
     @POST("income/add")
@@ -66,4 +66,13 @@ interface MoneyManagerApi {
 
     @GET("cost/type/all")
     fun getCostTypes(): Call<List<CostTypeResponse>>
+
+    @POST("cost/add")
+    fun postCost(@Body data: CostRequest): Call<CostResponse>
+
+    @PUT("cost/update")
+    fun putCost(@Body data: CostUpdateRequest): Call<CostResponse>
+
+    @DELETE("cost/delete")
+    fun deleteCost(@Query("costId") costId: Int): Call<Void>
 }

@@ -108,6 +108,10 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
             binding.collapsingToolbar.title = CurrencyUtils.showAmount(it)
         }
 
+        viewModel.totalExpenses.observe(viewLifecycleOwner) {
+            binding.textViewExpensesValue.text = CurrencyUtils.showAmount(it)
+        }
+
         viewModel.wallets.observe(viewLifecycleOwner) {
             walletsAdapter!!.setItems(it)
         }

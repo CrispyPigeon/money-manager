@@ -27,6 +27,7 @@ class MainViewModel @Inject constructor(
 ) : DialogsSupportViewModel() {
 
     val totalBalance = MutableLiveData<BigDecimal>()
+    val totalExpenses = MutableLiveData<BigDecimal>()
     val wallets = MutableLiveData<List<WalletItem>>()
     val transactions = MutableLiveData<List<TransactionResponse>>()
     val totalStatisticData = MutableLiveData<List<StatisticItemResponse>>()
@@ -56,6 +57,7 @@ class MainViewModel @Inject constructor(
         getTotalStatisticDataUseCase(viewModelScope,start, end).awaitFoldApi(
             {
                 totalStatisticData.value = it
+                totalExpenses.value = it.sumOf { it.amount }
             },
             {
                 showError(it.title, it.description)
