@@ -150,6 +150,10 @@
             android:id="@+id/action_costFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="costId"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/chooseCombinedWalletFragment"
@@ -162,6 +166,20 @@
         <action
             android:id="@+id/action_transactionsFragment_to_chooseCombinedWalletFragment"
             app:destination="@id/chooseCombinedWalletFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_transactionsFragment_to_incomeFragment"
+            app:destination="@id/incomeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_transactionsFragment_to_costFragment"
+            app:destination="@id/costFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"

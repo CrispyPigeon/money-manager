@@ -76,4 +76,10 @@ interface MoneyManagerApi {
 
     @DELETE("cost/delete")
     fun deleteCost(@Query("costId") costId: Int): Call<Void>
+
+    @GET("cost")
+    fun getCost(@Query("costId") costId: Int): Call<CostResponse>
+
+    @GET("income")
+    fun getIncome(@Query("incomeId") incomeId: Int): Call<IncomeResponse>
 }

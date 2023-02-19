@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
 
 data class TransactionResponse(
+    @SerializedName("transactionId") var transactionId: Int,
     @SerializedName("name") var name: String,
     @SerializedName("dateTime") var dateTime: String,
     @SerializedName("amount") var amount: BigDecimal,

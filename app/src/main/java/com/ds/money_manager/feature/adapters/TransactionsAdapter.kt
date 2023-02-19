@@ -8,15 +8,20 @@ import com.ds.money_manager.base.presentation.viewholders.BaseViewHolder
 import com.ds.money_manager.data.model.api.TransactionResponse
 import com.ds.money_manager.databinding.ItemCommonBinding
 import com.ds.money_manager.extensions.loadPicture
+import com.ds.money_manager.extensions.toDateString
 import com.ds.money_manager.utils.CurrencyUtils
-import com.ds.money_manager.utils.ImageUtils
-import com.ds.money_manager.utils.StringUtils.toDateString
 
 class TransactionsAdapter(val context: Context) :
     BaseRecyclerViewAdapter<TransactionsAdapter.TransactionViewHolder, TransactionResponse>() {
 
     inner class TransactionViewHolder(val binding: ItemCommonBinding) :
-        BaseViewHolder(binding.root)
+        BaseViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                onClickListener(items[adapterPosition], adapterPosition)
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val binding = ItemCommonBinding.inflate(

@@ -3,8 +3,7 @@ package com.ds.money_manager.feature.wallet
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.navArgs
-import com.ds.money_manager.Constants.NEW_WALLET_ID
-import com.ds.money_manager.R
+import com.ds.money_manager.Constants.ITEM_ID
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
 import com.ds.money_manager.databinding.FragmentWalletBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +14,7 @@ class WalletFragment : DialogsSupportFragment<FragmentWalletBinding, WalletViewM
     val args: WalletFragmentArgs by navArgs()
 
     override fun initViews() {
-        if (args.walletId != NEW_WALLET_ID) {
+        if (args.walletId != ITEM_ID) {
             configureDeleteButton()
             viewModel.getWalletData(args.walletId)
         }
@@ -33,7 +32,7 @@ class WalletFragment : DialogsSupportFragment<FragmentWalletBinding, WalletViewM
         }
 
         binding.buttonContinue.setOnClickListener {
-            if (args.walletId == NEW_WALLET_ID)
+            if (args.walletId == ITEM_ID)
                 viewModel.saveWallet(binding.editTextWalletName.text.toString())
             else
                 viewModel.updateWallet(args.walletId, binding.editTextWalletName.text.toString())

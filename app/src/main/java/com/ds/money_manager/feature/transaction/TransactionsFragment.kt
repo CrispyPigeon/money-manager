@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ds.money_manager.Constants.COST_TYPE
+import com.ds.money_manager.Constants.INCOME_TYPE
 import com.ds.money_manager.Constants.WALLET_DATA
 import com.ds.money_manager.Constants.WALLET_DATA_REQUEST_KEY
 import com.ds.money_manager.R
 import com.ds.money_manager.base.presentation.fragments.DialogsSupportFragment
+import com.ds.money_manager.data.model.TransactionType
 import com.ds.money_manager.data.model.WalletInfo
 import com.ds.money_manager.databinding.FragmentTransactionsBinding
 import com.ds.money_manager.feature.adapters.TransactionsAdapter
+import com.ds.money_manager.feature.main.fragment.MainFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +42,23 @@ class TransactionsFragment :
                     viewModel.walletInfo.value = result
             }
             navController.navigate(R.id.action_transactionsFragment_to_chooseCombinedWalletFragment)
+        }
+
+        transactionsAdapter!!.onClickListener = { item, position ->
+            when (item.transactionType) {
+                COST_TYPE -> {
+                    val action =
+                        TransactionsFragmentDirections.actionTransactionsFragmentToCostFragment(
+                            0,
+                            0,
+                            item.transactionId
+                        )
+                    navController.navigate(action)
+                }
+                INCOME_TYPE -> {
+                    //TODO
+                }
+            }
         }
 
         viewModel.walletInfo.observe(viewLifecycleOwner) {

@@ -1,7 +1,7 @@
 package com.ds.money_manager
 
 object Constants {
-    val NEW_WALLET_ID = -1
+    val ITEM_ID = -1
     val CURRENCY_SCALE = 2
     val ALL_WALLETS_VALUE = -3
 
@@ -12,4 +12,7 @@ object Constants {
 
     val WALLET_DATA_REQUEST_KEY = "WALLET_DATA_REQUEST_KEY"
     val WALLET_DATA = "WALLET_DATA"
+
+    val COST_TYPE = "cost"
+    val INCOME_TYPE = "income"
 }
