@@ -56,7 +56,12 @@ class TransactionsFragment :
                     navController.navigate(action)
                 }
                 INCOME_TYPE -> {
-                    //TODO
+                    val action =
+                        TransactionsFragmentDirections.actionTransactionsFragmentToIncomeFragment(
+                            0,
+                            item.transactionId
+                        )
+                    navController.navigate(action)
                 }
             }
         }

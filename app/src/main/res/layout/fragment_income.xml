@@ -120,4 +120,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/button_remove"
+        style="@style/Button.Remove"
+        android:layout_width="0dp"
+        android:layout_height="63dp"
+        android:visibility="gone"
+        android:layout_marginHorizontal="@dimen/margin_general"
+        android:layout_marginBottom="@dimen/margin_button_vertical"
+        android:text="@string/button_delete"
+        app:layout_constraintBottom_toTopOf="@id/button_continue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

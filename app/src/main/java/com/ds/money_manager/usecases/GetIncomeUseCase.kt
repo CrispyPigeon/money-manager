@@ -9,6 +9,6 @@ class GetIncomeUseCase @Inject constructor(
     private val moneyManagerDataHandler: MoneyManagerDataHandler
 ) {
     internal operator fun invoke(scope: CoroutineScope, incomeId: Int) = scope.asyncR {
-        moneyManagerDataHandler.getCost(incomeId)
+        moneyManagerDataHandler.getIncome(incomeId)
     }
 }

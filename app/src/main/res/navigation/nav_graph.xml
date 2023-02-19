@@ -99,6 +99,10 @@
             android:id="@+id/action_incomeFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="incomeId"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/chooseWalletFragment"
