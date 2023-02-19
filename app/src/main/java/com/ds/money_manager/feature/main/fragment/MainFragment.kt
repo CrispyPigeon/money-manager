@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -101,6 +102,14 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
         binding.constraintLayoutTransactions.setOnClickListener {
             navController.navigate(R.id.action_mainFragment_to_transactionsFragment)
+        }
+
+        binding.constraintLayoutStatistics.setOnClickListener {
+            Toast.makeText(requireContext(), R.string.coming_soon, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.constraintLayoutWallets.setOnClickListener {
+            Toast.makeText(requireContext(), R.string.coming_soon, Toast.LENGTH_SHORT).show()
         }
 
         binding.viewPagerWallets.registerOnPageChangeCallback(object :
