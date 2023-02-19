@@ -9,6 +9,7 @@
     <dimen name="fab_y_translation_first">-36dp</dimen>
     <dimen name="fab_y_translation_second">-20dp</dimen>
     <dimen name="image_view_selector_size">28dp</dimen>
+    <dimen name="image_view_calendar_size">22dp</dimen>
 
 
     <!-- Margins and Paddings -->
@@ -40,6 +41,7 @@
     <!-- Text sizes -->
 
     <dimen name="textsize_header_1">24sp</dimen>
+    <dimen name="textsize_header_2">20sp</dimen>
     <dimen name="textsize_standard">18sp</dimen>
     <dimen name="textsize_dialog_description">20sp</dimen>
     <dimen name="textsize_wallet_title">20sp</dimen>

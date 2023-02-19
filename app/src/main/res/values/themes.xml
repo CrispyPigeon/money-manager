@@ -51,6 +51,10 @@
         <item name="android:textSize">@dimen/textsize_header_1</item>
     </style>
 
+    <style name="TextView.Header.2">
+        <item name="android:textSize">@dimen/textsize_header_2</item>
+    </style>
+
     <style name="TextView.Header.Balance">
         <item name="android:textSize">@dimen/textsize_wallet_balance</item>
         <item name="android:textColor">@color/text_white</item>
