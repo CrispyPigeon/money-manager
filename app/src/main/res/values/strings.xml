@@ -41,4 +41,6 @@
     <string name="choose_wallet">Choose Wallet</string>
     <string name="choose_cost_type">Choose Cost Type</string>
     <string name="cost">Cost</string>
+    <string name="choose_date">Choose date</string>
+    <string name="all_wallet">All wallets</string>
 </resources>

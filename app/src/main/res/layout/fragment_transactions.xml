@@ -40,10 +40,11 @@
         android:layout_width="@dimen/image_view_calendar_size"
         android:layout_height="@dimen/image_view_calendar_size"
         android:layout_margin="@dimen/margin_general"
+        android:visibility="invisible"
         android:src="@drawable/ic_calendar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/recycler_view_cost_types"/>
+        app:layout_constraintBottom_toTopOf="@id/recycler_view_transaction_items"/>
 
     <TextView
         android:id="@+id/text_view_wallet"
@@ -57,7 +58,7 @@
         app:layout_constraintTop_toTopOf="@id/image_view_calendar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_cost_types"
+        android:id="@+id/recycler_view_transaction_items"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

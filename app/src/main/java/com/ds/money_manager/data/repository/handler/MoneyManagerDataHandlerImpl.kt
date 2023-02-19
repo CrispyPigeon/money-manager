@@ -88,6 +88,24 @@ class MoneyManagerDataHandlerImpl @Inject constructor(val moneyManagerApi: Money
         }
     }
 
+    override fun getAllTransactionsByDate(
+        dateFrom: String,
+        dateTo: String,
+        walletId: Int?,
+        offset: Int,
+        limit: Int
+    ): List<TransactionResponse> {
+        val result =
+            moneyManagerApi.getAllTransactionsByDate(dateFrom, dateTo, walletId, offset, limit).execute()
+        if (result.isSuccessful && result.body() != null)
+            return result.body()!!
+        else {
+            val apiError = ApiErrorUtils.parseError(result.errorBody()!!)
+            apiError?.let { throw ApiException(it.title, it.description, result.code()) }
+                ?: throw Exception(UNKNOWN_ERROR)
+        }
+    }
+
     override fun getLastTransactions(limit: Int): List<TransactionResponse> {
         val result = moneyManagerApi.getLastTransactions(limit).execute()
         if (result.isSuccessful && result.body() != null)

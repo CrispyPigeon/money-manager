@@ -46,6 +46,7 @@ interface MoneyManagerApi {
     fun getAllTransactionsByDate(
         @Query("dateFrom") dateFrom: String,
         @Query("dateTo") dateTo: String,
+        @Query("walletId") walletId: Int?,
         @Query("offset") offset: Int = 0,
         @Query("limit") limit: Int = 20
     ): Call<List<TransactionResponse>>
