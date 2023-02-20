@@ -85,7 +85,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
         binding.floatingActionButtonAdd.setOnClickListener {
             isFabPressed = !isFabPressed
-            configureFloatViews(isFabPressed)
+            configureFloatViews()
         }
 
         binding.textViewAddIncome.setOnClickListener {
@@ -95,6 +95,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         binding.textViewAddCost.setOnClickListener {
+
             val action =
                 MainFragmentDirections.actionMainFragmentToChooseWalletFragment(TransactionType.Cost)
             navController.navigate(action)
@@ -162,8 +163,14 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
     }
 
-    private fun configureFloatViews(fabPressed: Boolean) {
-        if (fabPressed) {
+    override fun onPause() {
+        isFabPressed = false
+        configureFloatViews()
+        super.onPause()
+    }
+
+    private fun configureFloatViews() {
+        if (isFabPressed) {
             binding.textViewAddIncome.visibility = View.VISIBLE
             binding.textViewAddIncome.startAnimation(fabShowAnimation)
             binding.textViewAddCost.visibility = View.VISIBLE
