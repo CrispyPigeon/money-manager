@@ -21,10 +21,10 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
 
     override fun initListeners() {
         viewModel.signInSuccessEvent.observe(viewLifecycleOwner){
-            navController.navigate(R.id.action_introFragment_to_mainFragment)
+            navController.navigate(IntroFragmentDirections.actionIntroFragmentToMainFragment())
         }
         viewModel.signInErrorEvent.observe(viewLifecycleOwner){
-            navController.navigate(R.id.action_introFragment_to_signInFragment)
+            navController.navigate(IntroFragmentDirections.actionIntroFragmentToSignInFragment())
         }
     }
 }

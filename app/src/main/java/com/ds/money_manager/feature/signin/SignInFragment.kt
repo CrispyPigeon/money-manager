@@ -41,11 +41,11 @@ class SignInFragment : DialogsSupportFragment<FragmentSignInBinding, SignInViewM
         }
 
         binding.textViewSignUp.setOnClickListener {
-            navController.navigate(R.id.action_signInFragment_to_signUpFragment)
+            navController.navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
         }
 
         viewModel.signInSuccessEvent.observe(viewLifecycleOwner) {
-            navController.navigate(R.id.action_signInFragment_to_mainFragment)
+            navController.navigate(SignInFragmentDirections.actionSignInFragmentToMainFragment())
         }
     }
 

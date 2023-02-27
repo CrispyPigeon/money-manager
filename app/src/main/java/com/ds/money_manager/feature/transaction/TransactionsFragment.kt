@@ -41,7 +41,7 @@ class TransactionsFragment :
                 if (result != null)
                     viewModel.walletInfo.value = result
             }
-            navController.navigate(R.id.action_transactionsFragment_to_chooseCombinedWalletFragment)
+            navController.navigate(TransactionsFragmentDirections.actionTransactionsFragmentToChooseCombinedWalletFragment())
         }
 
         transactionsAdapter!!.onClickListener = { item, position ->

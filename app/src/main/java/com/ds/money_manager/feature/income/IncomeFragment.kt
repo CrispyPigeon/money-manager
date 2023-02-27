@@ -82,7 +82,7 @@ class IncomeFragment : BaseTransactionFragment<FragmentIncomeBinding, IncomeView
         }
 
         viewModel.successEvent.observe(viewLifecycleOwner) {
-            navController.navigate(R.id.action_incomeFragment_to_mainFragment)
+            navController.navigate(IncomeFragmentDirections.actionIncomeFragmentToMainFragment())
         }
 
         viewModel.localeDate.observe(viewLifecycleOwner) {

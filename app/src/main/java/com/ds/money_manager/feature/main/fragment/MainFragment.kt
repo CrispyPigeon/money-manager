@@ -102,7 +102,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         binding.constraintLayoutTransactions.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_transactionsFragment)
+            navController.navigate(MainFragmentDirections.actionMainFragmentToTransactionsFragment())
         }
 
         binding.constraintLayoutStatistics.setOnClickListener {
@@ -131,7 +131,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
                     navController.navigate(action)
                 }
                 else -> {
-                    navController.navigate(R.id.action_mainFragment_to_walletFragment)
+                    navController.navigate(MainFragmentDirections.actionMainFragmentToWalletFragment())
                 }
 
             }
@@ -159,7 +159,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         viewModel.logOutSuccessEvent.observe(viewLifecycleOwner) {
-            navController.navigate(R.id.action_mainFragment_to_signInFragment)
+            navController.navigate(MainFragmentDirections.actionMainFragmentToSignInFragment())
         }
     }
 

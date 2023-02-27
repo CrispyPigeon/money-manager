@@ -84,7 +84,7 @@ class CostFragment : BaseTransactionFragment<FragmentCostBinding, CostViewModel>
         }
 
         viewModel.successEvent.observe(viewLifecycleOwner) {
-            navController.navigate(R.id.action_costFragment_to_mainFragment)
+            navController.navigate(CostFragmentDirections.actionCostFragmentToMainFragment())
         }
 
         viewModel.localeDate.observe(viewLifecycleOwner) {
