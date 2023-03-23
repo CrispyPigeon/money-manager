@@ -2,6 +2,7 @@ package com.ds.money_manager.feature.cost
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -40,7 +41,7 @@ class CostViewModel @Inject constructor(
     ) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             saveCostUseCase(
                 viewModelScope,
                 name,
@@ -65,7 +66,7 @@ class CostViewModel @Inject constructor(
     fun getCost(costId: Int) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             getCostUseCase(
                 viewModelScope,
                 costId
@@ -89,7 +90,7 @@ class CostViewModel @Inject constructor(
                    sum: BigDecimal) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             updateCostUseCase(
                 viewModelScope,
                 cost.value!!.costId,
@@ -116,7 +117,7 @@ class CostViewModel @Inject constructor(
     fun removeCost(costId: Int) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             removeCostUseCase(
                 viewModelScope,
                 costId

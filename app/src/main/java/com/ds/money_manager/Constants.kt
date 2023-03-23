@@ -15,4 +15,8 @@ object Constants {
 
     val COST_TYPE = "cost"
     val INCOME_TYPE = "income"
+
+    val UNAUTHORIZED_CODE = 401
+
+    val DEFAULT_DELAY = 300L
 }

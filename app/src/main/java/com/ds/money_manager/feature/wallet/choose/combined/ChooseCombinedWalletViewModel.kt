@@ -2,6 +2,7 @@ package com.ds.money_manager.feature.wallet.choose.combined
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants
 import com.ds.money_manager.Constants.ALL_WALLETS_VALUE
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
@@ -23,7 +24,7 @@ class ChooseCombinedWalletViewModel @Inject constructor(
     fun getWalletsDetails(allWalletsStr: String) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             getWalletDetailsUseCase(viewModelScope).awaitFoldApi(
                 {
                     val walletsDetails = mutableListOf<WalletDetailsResponse>()

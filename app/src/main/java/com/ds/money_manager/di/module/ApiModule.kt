@@ -56,7 +56,7 @@ internal object ApiModule {
 
     @Provides
     @Singleton
-    fun provideMoneyManagerDataHandler(moneyManagerApi: MoneyManagerApi): MoneyManagerDataHandler {
-        return MoneyManagerDataHandlerImpl(moneyManagerApi)
+    fun provideMoneyManagerDataHandler(moneyManagerApi: MoneyManagerApi, preferences: AppSharedPreferences): MoneyManagerDataHandler {
+        return MoneyManagerDataHandlerImpl(moneyManagerApi, preferences)
     }
 }

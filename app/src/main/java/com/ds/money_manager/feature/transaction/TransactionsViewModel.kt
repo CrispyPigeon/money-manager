@@ -2,6 +2,7 @@ package com.ds.money_manager.feature.transaction
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -26,7 +27,7 @@ class TransactionsViewModel @Inject constructor(
     fun getTransaction() {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             getTransactionsUseCase(
                 viewModelScope,
                 LocalDateTimeUtils.getAppMinimalDate().toApiString(),

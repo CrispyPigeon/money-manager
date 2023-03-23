@@ -2,6 +2,7 @@ package com.ds.money_manager.feature.wallet
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -29,7 +30,7 @@ class WalletViewModel @Inject constructor(
     fun getWalletData(walletId: Int) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             getWalletUseCase(viewModelScope,walletId).awaitFoldApi(
                 {
                     wallet.value = it
@@ -48,7 +49,7 @@ class WalletViewModel @Inject constructor(
     fun saveWallet(name: String) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             saveWalletUseCase(viewModelScope,name).awaitFoldApi(
                 {
                     successEvent.call()
@@ -67,7 +68,7 @@ class WalletViewModel @Inject constructor(
     fun updateWallet(walletId: Int, name: String) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             updateWalletUseCase(viewModelScope,walletId, name).awaitFoldApi(
                 {
                     successEvent.call()
@@ -86,7 +87,7 @@ class WalletViewModel @Inject constructor(
     fun removeWallet(walletId: Int) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             removeWalletUseCase(viewModelScope,walletId).awaitFoldApi(
                 {
                     successEvent.call()

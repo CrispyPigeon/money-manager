@@ -14,9 +14,6 @@ interface MoneyManagerApi {
     @POST("account/register")
     fun signUp(@Body data: SignUpRequest): Call<SignUpResponse>
 
-    @GET("account/validate_token")
-    fun checkToken(): Call<Boolean>
-
     @GET("wallet")
     fun getWallet(@Query("walletId") walletId: Int): Call<WalletResponse>
 

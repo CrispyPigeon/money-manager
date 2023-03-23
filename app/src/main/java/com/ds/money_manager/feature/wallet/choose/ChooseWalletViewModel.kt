@@ -2,6 +2,7 @@ package com.ds.money_manager.feature.wallet.choose
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants.DEFAULT_DELAY
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -21,7 +22,7 @@ class ChooseWalletViewModel @Inject constructor(
     fun getWalletsDetails() {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(DEFAULT_DELAY)
             getWalletDetailsUseCase(viewModelScope).awaitFoldApi(
                 {
                     wallets.value = it

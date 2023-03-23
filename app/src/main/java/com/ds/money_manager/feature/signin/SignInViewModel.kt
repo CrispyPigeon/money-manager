@@ -1,6 +1,7 @@
 package com.ds.money_manager.feature.signin
 
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -22,7 +23,7 @@ class SignInViewModel @Inject constructor(
     fun signIn(name: String, password: String) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             signInRequestUseCase(viewModelScope,name, password).awaitFoldApi(
                 {
                     saveAuthDataUseCase(name, password, it.token)

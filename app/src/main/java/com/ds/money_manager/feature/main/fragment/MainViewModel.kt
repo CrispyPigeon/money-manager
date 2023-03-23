@@ -2,6 +2,7 @@ package com.ds.money_manager.feature.main.fragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -99,7 +100,7 @@ class MainViewModel @Inject constructor(
     fun getAllData() {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             getTotalBalance()
             getWalletsDetails()
             getStatisticData()

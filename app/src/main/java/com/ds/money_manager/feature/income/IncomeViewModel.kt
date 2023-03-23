@@ -2,6 +2,7 @@ package com.ds.money_manager.feature.income
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ds.money_manager.Constants
 import com.ds.money_manager.base.helpers.awaitFoldApi
 import com.ds.money_manager.base.helpers.launchUI
 import com.ds.money_manager.base.presentation.viewmodels.DialogsSupportViewModel
@@ -36,7 +37,7 @@ class IncomeViewModel @Inject constructor(
     fun saveIncome(walletId: Int, name: String, amount: BigDecimal) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             saveIncomeUseCase(
                 viewModelScope,
                 walletId,
@@ -61,7 +62,7 @@ class IncomeViewModel @Inject constructor(
     fun getIncome(incomeId: Int) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             getIncomeUseCase(
                 viewModelScope,
                 incomeId
@@ -85,7 +86,7 @@ class IncomeViewModel @Inject constructor(
                    sum: BigDecimal) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             updateIncomeUseCase(
                 viewModelScope,
                 income.value!!.incomeId,
@@ -111,7 +112,7 @@ class IncomeViewModel @Inject constructor(
     fun removeIncome(incomeId: Int) {
         launchUI {
             changeLoadingState(true)
-            delay(1000)
+            delay(Constants.DEFAULT_DELAY)
             removeIncomeUseCase(
                 viewModelScope,
                 incomeId
