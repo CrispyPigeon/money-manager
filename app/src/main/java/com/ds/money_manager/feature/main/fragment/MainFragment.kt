@@ -24,6 +24,7 @@ import com.ds.money_manager.feature.adapters.TransactionsAdapter
 import com.ds.money_manager.feature.adapters.WalletsViewPagerAdapter
 import com.ds.money_manager.helpers.AppBarStateChangeListener
 import com.ds.money_manager.utils.CurrencyUtils
+import com.ds.money_manager.utils.StatisticDiagramUtils
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -150,7 +151,8 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         viewModel.totalStatisticData.observe(viewLifecycleOwner) {
-            setDiagramData(it)
+            val sections = StatisticDiagramUtils.setDiagramData(it)
+            binding.donutViewStatistic.submitData(sections)
             statisticItemsAdapter!!.setItems(it)
         }
 
@@ -215,22 +217,6 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
             else ->
                 super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun setDiagramData(statisticItems: List<StatisticItemResponse>) {
-        val sections = mutableListOf<DonutSection>()
-
-        statisticItems.forEach {
-            sections.add(
-                DonutSection(
-                    name = it.name,
-                    color = Color.parseColor(it.color),
-                    amount = it.amount.toFloat()
-                )
-            )
-        }
-
-        binding.donutViewStatistic.submitData(sections)
     }
 
     private fun configureDiagram() {
