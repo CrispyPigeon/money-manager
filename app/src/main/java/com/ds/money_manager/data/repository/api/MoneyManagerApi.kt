@@ -36,7 +36,8 @@ interface MoneyManagerApi {
     @GET("statistic/items")
     fun getTotalStatisticByDate(
         @Query("dateFrom") dateFrom: String,
-        @Query("dateTo") dateTo: String
+        @Query("dateTo") dateTo: String,
+        @Query("walletId") walletId: Int? = null
     ): Call<List<StatisticItemResponse>>
 
     @GET("statistic/transactions/all")

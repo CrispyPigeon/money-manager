@@ -68,13 +68,15 @@ class MoneyManagerDataHandlerImpl @Inject constructor(
 
     override fun getTotalStatisticByDate(
         dateFrom: LocalDate,
-        dateTo: LocalDate
+        dateTo: LocalDate,
+        walletId: Int?
     ): List<StatisticItemResponse> {
         val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         var result = moneyManagerApi.getTotalStatisticByDate(
             dateFrom.format(dateTimeFormatter),
-            dateTo.format(dateTimeFormatter)
+            dateTo.format(dateTimeFormatter),
+            walletId
         ).execute()
 
         if (result.code() == UNAUTHORIZED_CODE) {

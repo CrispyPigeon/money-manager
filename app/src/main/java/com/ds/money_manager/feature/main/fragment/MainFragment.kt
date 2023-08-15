@@ -107,7 +107,7 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
         }
 
         binding.constraintLayoutStatistics.setOnClickListener {
-            Toast.makeText(requireContext(), R.string.coming_soon, Toast.LENGTH_SHORT).show()
+            navController.navigate(MainFragmentDirections.actionMainFragmentToStatisticFragment())
         }
 
         binding.constraintLayoutWallets.setOnClickListener {
@@ -148,6 +148,10 @@ class MainFragment : DialogsSupportFragment<FragmentMainBinding, MainViewModel>(
 
         viewModel.wallets.observe(viewLifecycleOwner) {
             walletsAdapter!!.setItems(it)
+        }
+
+        viewModel.monthName.observe(viewLifecycleOwner) {
+            binding.textViewMonthStatistic.text = it
         }
 
         viewModel.totalStatisticData.observe(viewLifecycleOwner) {

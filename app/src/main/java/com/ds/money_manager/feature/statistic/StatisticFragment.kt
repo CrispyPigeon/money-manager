@@ -35,10 +35,23 @@ class StatisticFragment : DialogsSupportFragment<FragmentStatisticsBinding, Stat
         binding.textViewWallet.setOnClickListener {
             setFragmentResultListener(Constants.WALLET_DATA_REQUEST_KEY) { key, bundle ->
                 val result = bundle.getSerializable(Constants.WALLET_DATA) as WalletInfo?
-                if (result != null)
+                if (result != null) {
                     viewModel.walletInfo.value = result
+                }
             }
-            navController.navigate(TransactionsFragmentDirections.actionTransactionsFragmentToChooseCombinedWalletFragment())
+            navController.navigate(StatisticFragmentDirections.actionStatisticFragmentToChooseCombinedWalletFragment())
+        }
+
+        binding.imageViewMonthBack.setOnClickListener {
+            viewModel.previousMonth()
+        }
+
+        binding.imageViewMonthNext.setOnClickListener {
+            viewModel.nextMonth()
+        }
+
+        viewModel.monthName.observe(viewLifecycleOwner) {
+            binding.textViewMonthStatistic.text = it
         }
 
         viewModel.totalExpenses.observe(viewLifecycleOwner) {
@@ -49,6 +62,11 @@ class StatisticFragment : DialogsSupportFragment<FragmentStatisticsBinding, Stat
             val sections = StatisticDiagramUtils.setDiagramData(it)
             binding.donutViewStatistic.submitData(sections)
             statisticItemsAdapter!!.setItems(it)
+        }
+
+        viewModel.walletInfo.observe(viewLifecycleOwner) {
+            binding.textViewWallet.text = it.name
+            viewModel.getStatisticData()
         }
     }
 

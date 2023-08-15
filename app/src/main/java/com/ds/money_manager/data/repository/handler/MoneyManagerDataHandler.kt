@@ -12,7 +12,7 @@ interface MoneyManagerDataHandler {
     fun signUp(name: String, password: String): SignUpResponse
     fun getTotalBalance(): BigDecimal
     fun getAllWalletsDetails(): List<WalletDetailsResponse>
-    fun getTotalStatisticByDate(dateFrom: LocalDate, dateTo: LocalDate): List<StatisticItemResponse>
+    fun getTotalStatisticByDate(dateFrom: LocalDate, dateTo: LocalDate, walletId: Int? = null): List<StatisticItemResponse>
     fun getAllTransactionsByDate(
         dateFrom: String, dateTo: String, walletId: Int? = null, offset: Int = 0, limit: Int = 20
     ): List<TransactionResponse>

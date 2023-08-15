@@ -146,7 +146,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/text_view_total_statistic"
+                    android:id="@+id/text_view_month_statistic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_general_small"
@@ -168,7 +168,7 @@
                     app:donut_strokeWidth="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_total_statistic" />
+                    app:layout_constraintTop_toBottomOf="@id/text_view_month_statistic" />
 
                 <TextView
                     android:id="@+id/text_view_expenses_title"

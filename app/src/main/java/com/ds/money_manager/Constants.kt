@@ -18,5 +18,5 @@ object Constants {
 
     val UNAUTHORIZED_CODE = 401
 
-    val DEFAULT_DELAY = 300L
+    val DEFAULT_DELAY = 150L
 }

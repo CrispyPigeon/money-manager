@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/image_view_back_button"
             style="@style/ImageViewBackButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/image_view_back_arrow_size"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_general"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,17 +56,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/image_view_calendar" />
 
+    <TextView
+        android:id="@+id/text_view_month_statistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_general_large"
+        android:fontFamily="@font/lato_400"
+        android:text="@string/total_statistics"
+        android:textColor="@color/field_text_highlight"
+        android:textSize="@dimen/textsize_statistic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_wallet" />
+
+    <ImageView
+        android:id="@+id/image_view_month_back"
+        android:layout_width="@dimen/image_view_statistic_arrow_size"
+        android:layout_height="@dimen/image_view_statistic_arrow_size"
+        android:layout_marginHorizontal="@dimen/margin_general"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_month_statistic"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_month_statistic"/>
+
+    <ImageView
+        android:id="@+id/image_view_month_next"
+        android:layout_width="@dimen/image_view_statistic_arrow_size"
+        android:layout_height="@dimen/image_view_statistic_arrow_size"
+        android:layout_marginHorizontal="@dimen/margin_general"
+        android:src="@drawable/ic_arrow_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_month_statistic"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_month_statistic"/>
+
     <app.futured.donut.DonutProgressView
         android:id="@+id/donut_view_statistic"
         android:layout_width="168dp"
         android:layout_height="168dp"
-        android:layout_marginTop="@dimen/margin_general"
+        android:layout_marginTop="@dimen/margin_general_medium"
         app:donut_gapAngle="270"
         app:donut_gapWidth="0"
         app:donut_strokeWidth="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_wallet" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_month_statistic" />
 
     <TextView
         android:id="@+id/text_view_expenses_title"
