@@ -1,7 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Moneymanager" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.Moneymanager" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorControlNormal">@color/cursor</item>
+        <item name="android:colorControlActivated">@color/cursor</item>
+        <item name="android:colorControlHighlight">@color/cursor</item>
     </style>
+
+    <style name="Theme.Moneymanager" parent="Base.Theme.Moneymanager" />
 </resources>

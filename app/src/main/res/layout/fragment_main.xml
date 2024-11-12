@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background"
+                app:collapsedTitleTextAppearance="@style/TextCollapsedAppBar"
+                app:expandedTitleGravity="bottom|center_horizontal"
+                app:expandedTitleTextAppearance="@style/TextExpandedAppBar"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:title="0.00 zł">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    app:layout_collapseMode="parallax">
+
+                    <TextView
+                        android:id="@+id/text_view_total_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        android:fontFamily="@font/lato_400"
+                        android:text="@string/total_balance"
+                        android:textColor="@color/field_text_highlight"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--Now add the NestedScollView-->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_general_huge">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_wallets"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_general"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/text_view_wallets_title"
+                        style="@style/TextView.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wallets"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_next"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager_wallets"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/view_pager_wallet_height"
+                    android:layout_marginTop="@dimen/margin_top_view_pager_wallet"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_layout_wallets" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_statistics"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_general"
+                    android:layout_marginTop="@dimen/margin_top_view_pager_wallet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_pager_wallets">
+
+                    <TextView
+                        android:id="@+id/text_view_statistics_title"
+                        style="@style/TextView.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/statistics"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_next"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/text_view_month_statistic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general_small"
+                    android:fontFamily="@font/lato_400"
+                    android:text="@string/total_statistics"
+                    android:textColor="@color/field_text_highlight"
+                    android:textSize="@dimen/textsize_statistic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_layout_statistics" />
+
+                <app.futured.donut.DonutProgressView
+                    android:id="@+id/donut_view_statistic"
+                    android:layout_width="168dp"
+                    android:layout_height="168dp"
+                    android:layout_marginTop="@dimen/margin_general_small"
+                    app:donut_gapAngle="270"
+                    app:donut_gapWidth="0"
+                    app:donut_strokeWidth="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_month_statistic" />
+
+                <TextView
+                    android:id="@+id/text_view_expenses_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_400"
+                    android:text="@string/expenses"
+                    android:textColor="@color/field_text_highlight"
+                    android:textSize="@dimen/textsize_expenses"
+                    app:layout_constraintBottom_toTopOf="@id/text_view_expenses_value"
+                    app:layout_constraintEnd_toEndOf="@id/donut_view_statistic"
+                    app:layout_constraintStart_toStartOf="@id/donut_view_statistic"
+                    app:layout_constraintTop_toTopOf="@id/donut_view_statistic"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/text_view_expenses_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_600"
+                    android:text="@string/expenses"
+                    android:textColor="@color/field_text"
+                    android:textSize="@dimen/textsize_standard"
+                    app:layout_constraintBottom_toBottomOf="@id/donut_view_statistic"
+                    app:layout_constraintEnd_toEndOf="@id/donut_view_statistic"
+                    app:layout_constraintStart_toStartOf="@id/donut_view_statistic"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_expenses_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_statistic_items"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/donut_view_statistic"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_common" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_transactions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_general"
+                    android:layout_marginTop="@dimen/margin_top_view_pager_wallet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_statistic_items">
+
+                    <TextView
+                        android:id="@+id/text_view_transactions_title"
+                        style="@style/TextView.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transactions"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_next"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_transaction_items"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_layout_transactions"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_common" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/text_view_add_income"
+            style="@style/TextView.Header.Float"
+            android:layout_width="@dimen/text_view_fab_width"
+            android:layout_height="@dimen/fab_size"
+            android:background="@drawable/background_text_view_add_income"
+            android:text="@string/add_income"
+            android:translationY="@dimen/fab_y_translation_second"
+            android:visibility="gone"
+            app:layout_anchor="@id/text_view_add_cost"
+            app:layout_anchorGravity="top|end" />
+
+        <TextView
+            android:id="@+id/text_view_add_cost"
+            style="@style/TextView.Header.Float"
+            android:layout_width="@dimen/text_view_fab_width"
+            android:layout_height="@dimen/fab_size"
+            android:background="@drawable/background_text_view_add_cost"
+            android:text="@string/add_cost"
+            android:translationY="@dimen/fab_y_translation_first"
+            android:visibility="gone"
+            app:layout_anchor="@id/floating_action_button_add"
+            app:layout_anchorGravity="top|end" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/margin_general"
+            android:contentDescription="@string/plus"
+            android:elevation="0dp"
+            android:src="@drawable/ic_fab_plus"
+            app:elevation="0dp"
+            app:maxImageSize="@dimen/fab_size" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

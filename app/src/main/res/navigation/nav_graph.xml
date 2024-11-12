@@ -2,27 +2,190 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    android:id="@+id/nav_graph">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.ds.money_manager.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/signInFragment"
+        android:name="com.ds.money_manager.feature.signin.SignInFragment"
+        android:label="SignInFragment" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_signInFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.ds.money_manager.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/signUpFragment"
+        android:name="com.ds.money_manager.feature.signup.SignUpFragment"
+        android:label="SignUpFragment" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_signUpFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.ds.money_manager.feature.main.fragment.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_walletFragment"
+            app:destination="@id/walletFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_mainFragment_to_chooseWalletFragment"
+            app:destination="@id/chooseWalletFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_mainFragment_to_transactionsFragment"
+            app:destination="@id/transactionsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_mainFragment_to_statisticFragment"
+            app:destination="@id/statisticFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.ds.money_manager.feature.wallet.WalletFragment"
+        android:label="WalletFragment" >
+        <argument
+            android:name="walletId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/incomeFragment"
+        android:name="com.ds.money_manager.feature.income.IncomeFragment"
+        android:label="IncomeFragment" >
+        <argument
+            android:name="walletId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_incomeFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="incomeId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseWalletFragment"
+        android:name="com.ds.money_manager.feature.wallet.choose.ChooseWalletFragment"
+        android:label="ChooseWalletFragment" >
+        <action
+            android:id="@+id/action_chooseWalletFragment_to_incomeFragment"
+            app:destination="@id/incomeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_chooseWalletFragment_to_chooseCostTypeFragment"
+            app:destination="@id/chooseCostTypeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="transactionType"
+            app:argType="com.ds.money_manager.data.model.TransactionType" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseCostTypeFragment"
+        android:name="com.ds.money_manager.feature.costtype.ChooseCostTypeFragment"
+        android:label="ChooseCostTypeFragment" >
+        <argument
+            android:name="walletId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_chooseCostTypeFragment_to_costFragment"
+            app:destination="@id/costFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/costFragment"
+        android:name="com.ds.money_manager.feature.cost.CostFragment"
+        android:label="CostFragment" >
+        <argument
+            android:name="walletId"
+            app:argType="integer" />
+        <argument android:name="costTypeId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_costFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="costId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseCombinedWalletFragment"
+        android:name="com.ds.money_manager.feature.wallet.choose.combined.ChooseCombinedWalletFragment"
+        android:label="ChooseCombinedWalletFragment" />
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.ds.money_manager.feature.transaction.TransactionsFragment"
+        android:label="TransactionsFragment" >
+        <action
+            android:id="@+id/action_transactionsFragment_to_chooseCombinedWalletFragment"
+            app:destination="@id/chooseCombinedWalletFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_transactionsFragment_to_incomeFragment"
+            app:destination="@id/incomeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_transactionsFragment_to_costFragment"
+            app:destination="@id/costFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticFragment"
+        android:name="com.ds.money_manager.feature.statistic.StatisticFragment"
+        android:label="StatisticFragment" >
+        <action
+            android:id="@+id/action_statisticFragment_to_chooseCombinedWalletFragment"
+            app:destination="@id/chooseCombinedWalletFragment" />
     </fragment>
 </navigation>

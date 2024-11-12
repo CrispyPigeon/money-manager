@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        style="@style/ToolbarStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_view_back_button"
+            style="@style/ImageViewBackButton"
+            android:layout_width="@dimen/image_view_back_arrow_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_general"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_toolbar_title"
+            style="@style/TextView.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/statistics"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/image_view_calendar"
+        android:layout_width="@dimen/image_view_calendar_size"
+        android:layout_height="@dimen/image_view_calendar_size"
+        android:layout_margin="@dimen/margin_general"
+        android:visibility="invisible"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+    <TextView
+        android:id="@+id/text_view_wallet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_wallet"
+        style="@style/TextView.Header.2"
+        android:layout_marginStart="@dimen/margin_general"
+        app:layout_constraintBottom_toBottomOf="@id/image_view_calendar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/image_view_calendar" />
+
+    <TextView
+        android:id="@+id/text_view_month_statistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_general_large"
+        android:fontFamily="@font/lato_400"
+        android:text="@string/total_statistics"
+        android:textColor="@color/field_text_highlight"
+        android:textSize="@dimen/textsize_statistic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_wallet" />
+
+    <ImageView
+        android:id="@+id/image_view_month_back"
+        android:layout_width="@dimen/image_view_statistic_arrow_size"
+        android:layout_height="@dimen/image_view_statistic_arrow_size"
+        android:layout_marginHorizontal="@dimen/margin_general"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_month_statistic"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_month_statistic"/>
+
+    <ImageView
+        android:id="@+id/image_view_month_next"
+        android:layout_width="@dimen/image_view_statistic_arrow_size"
+        android:layout_height="@dimen/image_view_statistic_arrow_size"
+        android:layout_marginHorizontal="@dimen/margin_general"
+        android:src="@drawable/ic_arrow_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_month_statistic"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_month_statistic"/>
+
+    <app.futured.donut.DonutProgressView
+        android:id="@+id/donut_view_statistic"
+        android:layout_width="168dp"
+        android:layout_height="168dp"
+        android:layout_marginTop="@dimen/margin_general_medium"
+        app:donut_gapAngle="270"
+        app:donut_gapWidth="0"
+        app:donut_strokeWidth="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_month_statistic" />
+
+    <TextView
+        android:id="@+id/text_view_expenses_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_400"
+        android:text="@string/expenses"
+        android:textColor="@color/field_text_highlight"
+        android:textSize="@dimen/textsize_expenses"
+        app:layout_constraintBottom_toTopOf="@id/text_view_expenses_value"
+        app:layout_constraintEnd_toEndOf="@id/donut_view_statistic"
+        app:layout_constraintStart_toStartOf="@id/donut_view_statistic"
+        app:layout_constraintTop_toTopOf="@id/donut_view_statistic"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/text_view_expenses_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_600"
+        android:text="@string/expenses"
+        android:textColor="@color/field_text"
+        android:textSize="@dimen/textsize_standard"
+        app:layout_constraintBottom_toBottomOf="@id/donut_view_statistic"
+        app:layout_constraintEnd_toEndOf="@id/donut_view_statistic"
+        app:layout_constraintStart_toStartOf="@id/donut_view_statistic"
+        app:layout_constraintTop_toBottomOf="@id/text_view_expenses_title" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_statistic_items"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_general_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/donut_view_statistic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_common" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
